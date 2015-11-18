@@ -110,10 +110,9 @@ public class OptitrackRigidBodyManager : MonoBehaviour {
 			rigidBodyIDs[index] = System.Convert.ToInt32(rigidBodyList[index].Attributes["ID"].InnerText);
 			
 			//Rigid Body Position
-			rigidBodyPositions[index].x = ((float) System.Convert.ToDouble(rigidBodyList[index].Attributes["x"].InnerText))* 5 	+ origin.position.x;
-			//rigidBodyPositions[index].y = (float) System.Convert.ToDouble(rigidBodyList[index].Attributes["y"].InnerText) 		+ origin.position.y;
-			rigidBodyPositions[index].y = 1.049999f 		+ origin.position.y;
-			rigidBodyPositions[index].z = -(float) System.Convert.ToDouble(rigidBodyList[index].Attributes["z"].InnerText)* 5 		+ origin.position.z;
+			rigidBodyPositions[index].x = -((float) System.Convert.ToDouble(rigidBodyList[index].Attributes["x"].InnerText)) 	+ origin.position.x;
+			rigidBodyPositions[index].y = (float) System.Convert.ToDouble(rigidBodyList[index].Attributes["y"].InnerText) 		+ origin.position.y;
+			rigidBodyPositions[index].z = (float) System.Convert.ToDouble(rigidBodyList[index].Attributes["z"].InnerText) 		+ origin.position.z;
 			
 			//Rigid Body Quaternion Orientation
             //Convert coordinates systems from Motive to Unity
@@ -126,9 +125,4 @@ public class OptitrackRigidBodyManager : MonoBehaviour {
             rigidBodyQuaternions[index] = origin.rotation * rigidBodyQuaternions[index];      
 		}
 	}
-/*	void resetPosition(){
-		rigidBodyPositions[index].x = 0f;
-		rigidBodyPositions[index].y = 1.049999f;
-		rigidBodyPositions[index].z = 0f;
-	} */
 }

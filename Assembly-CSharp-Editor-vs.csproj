@@ -244,7 +244,7 @@
      <None Include="Assets\Resources\GM Bank\Shanai.sfz.txt" />
      <None Include="Assets\Resources\GM Bank\SweepPad.sfz.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/CAVE/Desktop/CAVESound/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>C:/Users/CAVE/Desktop/CAVESound/CAVESound/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

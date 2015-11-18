@@ -18,8 +18,8 @@ public class OptitrackRigidBody : MonoBehaviour {
 	private bool foundIndex = false;
 	[HideInInspector]
     public int index;
-	public KeyCode toggleKey = KeyCode.M;
-    public bool usePositionTracking = true;
+
+    public bool usePostionTracking = true;
     public bool useRotationTracking = true;
 
     public GameObject originOverride;
@@ -29,12 +29,6 @@ public class OptitrackRigidBody : MonoBehaviour {
     }
 
 	void Update () {
-		if (Input.GetKeyDown(toggleKey) && usePositionTracking == true){	
-			usePositionTracking = false;
-		}
-		else if(Input.GetKeyDown(toggleKey) && usePositionTracking == false){ 	
-			usePositionTracking = true;
-		}
 		//If we have received a packet from Motive then look for the rigid body ID index
 		if(foundIndex == false) 
 		{
@@ -55,7 +49,7 @@ public class OptitrackRigidBody : MonoBehaviour {
 			}
 		}
 		else {
-            if (usePositionTracking)
+            if (usePostionTracking)
                 if (originOverride != null)
                 {
                     transform.position = (OptitrackRigidBodyManager.instance.rigidBodyPositions[index] - OptitrackRigidBodyManager.instance.origin.position) + originOverride.transform.position;
@@ -76,7 +70,7 @@ public class OptitrackRigidBody : MonoBehaviour {
 		}
 	}
 
-    public Vector3 GetPosition() {
+    public Vector3 GetPostion() {
         return OptitrackRigidBodyManager.instance.rigidBodyPositions[index];
     }
 
