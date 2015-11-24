@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Programme/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Programme/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,7 @@
      <Compile Include="Assets\Optitrack\OptitrackRigidBodyManager.cs" />
      <Compile Include="Assets\Optitrack\Position Dummy Script.cs" />
      <Compile Include="Assets\Optitrack\SlipStream.cs" />
+     <Compile Include="Assets\Scripts\AudioPlayer.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\AsymFrustum.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\DataStream.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\DirectMulticastSocketClient.cs" />
@@ -64,6 +65,8 @@
      <Compile Include="Assets\Scripts\CAVE Scripts\OptiTrackObjectRight.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\SkeletonClass.cs" />
+     <Compile Include="Assets\Scripts\PitchRangeSelector.cs" />
+     <Compile Include="Assets\Scripts\SimulateMovement.cs" />
      <Compile Include="Assets\Scripts\SoundAreaSelector.cs" />
      <Compile Include="Assets\Scripts\UnitySynthTest.cs" />
      <None Include="Assets\Resources\Midis\carnival.mid.txt" />
@@ -260,16 +263,16 @@
      <None Include="Assets\Resources\GM Bank\Shanai.sfz.txt" />
      <None Include="Assets\Resources\GM Bank\SweepPad.sfz.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
