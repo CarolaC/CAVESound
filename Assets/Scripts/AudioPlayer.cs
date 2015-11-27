@@ -13,6 +13,7 @@ public class AudioPlayer : MonoBehaviour {
     private int bufferSize = 1024;
     private int midiNoteVolume = 100;
     private int minPitch = 60;
+    private int minInstrument = 44;
     private float[] sampleBuffer;
     private float gain = 1f;
 
@@ -39,7 +40,7 @@ public class AudioPlayer : MonoBehaviour {
 
             activeSoundArea = soundAreaSelector.activeSoundArea;
             activePitch = pitchRangeSelector.activePitch;
-            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, midiNoteVolume, activeSoundArea);
+            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, midiNoteVolume, minInstrument + activeSoundArea);
             print("Played note with instrument " + activeSoundArea + " and pitch " + activePitch);
         }
 	}
