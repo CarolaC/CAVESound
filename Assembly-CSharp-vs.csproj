@@ -65,8 +65,10 @@
      <Compile Include="Assets\Scripts\CAVE Scripts\OptiTrackObjectRight.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\SkeletonClass.cs" />
+     <Compile Include="Assets\Scripts\LoopManager.cs" />
      <Compile Include="Assets\Scripts\PitchRangeSelector.cs" />
      <Compile Include="Assets\Scripts\SimulateMovement.cs" />
+     <Compile Include="Assets\Scripts\SimulateRotation.cs" />
      <Compile Include="Assets\Scripts\SoundAreaSelector.cs" />
      <Compile Include="Assets\Scripts\UnitySynthTest.cs" />
      <None Include="Assets\Resources\Midis\carnival.mid.txt" />

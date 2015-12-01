@@ -13,7 +13,7 @@ public class AudioPlayer : MonoBehaviour {
     private int bufferSize = 1024;
     private int midiNoteVolume = 100;
     private int minPitch = 60;
-    private int minInstrument = 44;
+    private int minInstrument = 0;
     private float[] sampleBuffer;
     private float gain = 1f;
 
@@ -28,8 +28,8 @@ public class AudioPlayer : MonoBehaviour {
         midiStreamSynthesizer.LoadBank(bankFilePath);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];		
 
-        soundAreaSelector = GameObject.Find("SoundSelectors").GetComponent<SoundAreaSelector>();
-        pitchRangeSelector = GameObject.Find("SoundSelectors").GetComponent<PitchRangeSelector>();
+        soundAreaSelector = GameObject.Find("SoundManagers").GetComponent<SoundAreaSelector>();
+		pitchRangeSelector = GameObject.Find("SoundManagers").GetComponent<PitchRangeSelector>();
 	}
 	
 	// Update is called once per frame

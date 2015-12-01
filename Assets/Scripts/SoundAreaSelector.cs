@@ -8,7 +8,7 @@ public class SoundAreaSelector : MonoBehaviour {
     public Transform listenerTransform;
     public Vector2 caveTopLeftCorner;
     public Vector2 caveBottomRightCorner;
-    public int soundAreaCount = 4;
+    public int soundAreaCount;
 
     private List<Rect> soundAreas = new List<Rect>();
     [HideInInspector]
@@ -37,18 +37,32 @@ public class SoundAreaSelector : MonoBehaviour {
     // divide rect into sound areas
     void divideRect(Rect caveRect)
     {
-        if (soundAreaCount == 4)
-        {
-            soundAreas.Add(new Rect(caveRect.x, caveRect.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
-            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
-            soundAreas.Add(new Rect(caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.5f, caveRect.height * 0.5f));
-            soundAreas.Add(new Rect(caveRect.center.x, caveRect.center.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
+        if (soundAreaCount == 4) 
+		{
+			soundAreas.Add (new Rect (caveRect.x, caveRect.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
+			soundAreas.Add (new Rect (caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.5f, caveRect.height * 0.5f));
+			soundAreas.Add (new Rect (caveRect.center.x, caveRect.center.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
 
-            for (int i = 0; i < soundAreas.Count; i++)
-            {
-                print("Sound Area " + i + ": " + soundAreas[i]);
-            }
-        }
+			for (int i = 0; i < soundAreas.Count; i++) {
+				print ("Sound Area " + i + ": " + soundAreas [i]);
+			}
+		} 
+		else if (soundAreaCount == 8) 
+		{
+			soundAreas.Add (new Rect (caveRect.x, caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.25f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));			
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.75f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
+			soundAreas.Add (new Rect (caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));	
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.25f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));			
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));			
+			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.75f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));
+
+			for (int i = 0; i < soundAreas.Count; i++) {
+				print ("Sound Area " + i + ": " + soundAreas [i]);
+			}
+		}
     }
 
 }
