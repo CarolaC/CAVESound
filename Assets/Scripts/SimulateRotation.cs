@@ -9,6 +9,7 @@ public class SimulateRotation : MonoBehaviour {
 	private bool performRotationBack = false;
 	private Quaternion rotateTo;
 	private Quaternion rotateBack;
+
 	[HideInInspector]
 	public UnityEvent setOnLoopEvent;
 

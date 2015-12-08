@@ -1,8 +1,36 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LoopManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\LoopManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SoundAreaSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AudioPlayer.cs" Line="66" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="LoopManager.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Plugins" expanded="True">
+              <Node name="CSharpSynth" expanded="True">
+                <Node name="Synthesis" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="D:\Studium\MA Sound Vision\2. Semester\CAVE\CAVESound\Assets\Plugins\CSharpSynth\Synthesis\StreamSynthesizer.cs" line="350" />
+      <Breakpoint file="D:\Studium\MA Sound Vision\2. Semester\CAVE\CAVESound\Assets\Scripts\AudioPlayer.cs" line="27" />
+      <Breakpoint file="D:\Studium\MA Sound Vision\2. Semester\CAVE\CAVESound\Assets\Scripts\LoopManager.cs" line="46" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

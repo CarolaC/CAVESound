@@ -11,7 +11,8 @@ public class AudioPlayer : MonoBehaviour {
     private StreamSynthesizer midiStreamSynthesizer;
     private string bankFilePath = "GM Bank/gm";
     private int bufferSize = 1024;
-    private int midiNoteVolume = 100;
+    private int chooseNoteVolume = 10;
+    private int loopNoteVolume = 100;
     private int minPitch = 60;
     private int minInstrument = 0;
     private float[] sampleBuffer;
@@ -40,10 +41,22 @@ public class AudioPlayer : MonoBehaviour {
 
             activeSoundArea = soundAreaSelector.activeSoundArea;
             activePitch = pitchRangeSelector.activePitch;
-            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, midiNoteVolume, minInstrument + activeSoundArea);
+            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, chooseNoteVolume, minInstrument + activeSoundArea);
             print("Played note with instrument " + activeSoundArea + " and pitch " + activePitch);
         }
 	}
+
+    public void playLoopNote(LoopNote note)
+    {
+        StartCoroutine(loopNoteCoroutine(note));     
+    }
+
+    IEnumerator loopNoteCoroutine(LoopNote note)
+    {
+        midiStreamSynthesizer.NoteOn(1, note.pitch, loopNoteVolume, note.instrument);
+        yield return new WaitForSeconds(1);
+        midiStreamSynthesizer.NoteOff(1, note.pitch);
+    }
 
     // this function plays the audio data (code from UnitySynthTest.cs)
     // See http://unity3d.com/support/documentation/ScriptReference/MonoBehaviour.OnAudioFilterRead.html for reference code
