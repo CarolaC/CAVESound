@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// simulates the listener's movement by pressing the arrow keys
+// simulate the listener's movement by pressing the arrow keys
 public class SimulateMovement : MonoBehaviour {
 
     private float speed = 8;

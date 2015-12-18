@@ -4,12 +4,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+// manages the loop cycle, creates new loop notes and adds them to the loop
 public class LoopManager : MonoBehaviour {
 
 	private SoundAreaSelector soundAreaSelector;
 	private PitchRangeSelector pitchRangeSelector;
     private AudioPlayer audioPlayer;
 	private SimulateRotation simulator;
+	private SetNoteManager setNoteManager;
     private List<LoopNote> loopNotes = new List<LoopNote>();
     private List<LoopNote> pendingNotes = new List<LoopNote>();
     private int beatInstrument = 115;
@@ -25,6 +27,9 @@ public class LoopManager : MonoBehaviour {
         soundAreaSelector = GameObject.Find("SoundManagers").GetComponent<SoundAreaSelector>();
         pitchRangeSelector = GameObject.Find("SoundManagers").GetComponent<PitchRangeSelector>();
         audioPlayer = GameObject.Find("Listener").GetComponent<AudioPlayer>();
+		
+		setNoteManager = GameObject.Find("SoundManagers").GetComponent<SetNoteManager>();
+		setNoteManager.setOnLoopEvent.AddListener(setOnLoop);
 
 		simulator = GameObject.Find("SecondTarget").GetComponent<SimulateRotation>();
 		simulator.setOnLoopEvent.AddListener(setOnLoop);
@@ -46,7 +51,7 @@ public class LoopManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-        print("Time is: " + timer);
+        //print("Time is: " + timer);
 
         // play note if time has been reached
         if (!lastNote && timer >= currentNote.time)
@@ -73,7 +78,7 @@ public class LoopManager : MonoBehaviour {
             timer %= loopDuration;
             lastNote = false;
             currentNote = loopNotes[noteIndex];
-            print("new loop - Time is: " + timer);
+            //print("new loop - Time is: " + timer);
 
             // if the user has set some notes, add them to the loop
             if (pendingNotes.Count > 0)

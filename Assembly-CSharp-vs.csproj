@@ -66,7 +66,9 @@
      <Compile Include="Assets\Scripts\CAVE Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CAVE Scripts\SkeletonClass.cs" />
      <Compile Include="Assets\Scripts\LoopManager.cs" />
+     <Compile Include="Assets\Scripts\LoopNote.cs" />
      <Compile Include="Assets\Scripts\PitchRangeSelector.cs" />
+     <Compile Include="Assets\Scripts\SetNoteManager.cs" />
      <Compile Include="Assets\Scripts\SimulateMovement.cs" />
      <Compile Include="Assets\Scripts\SimulateRotation.cs" />
      <Compile Include="Assets\Scripts\SoundAreaSelector.cs" />

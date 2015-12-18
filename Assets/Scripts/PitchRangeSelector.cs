@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-// divide y-axis (arm range) into pitch ranges and return active pitch
+// divides y-axis (arm range) into pitch ranges and return active pitch
 public class PitchRangeSelector : MonoBehaviour {
 
     public Transform listenerTransform;

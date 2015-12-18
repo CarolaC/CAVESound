@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 
+// simulate the rotation of the second target by pressing 'A', so that you can add loop notes with keyboard
 public class SimulateRotation : MonoBehaviour {
 	
 	private float speed = 200;

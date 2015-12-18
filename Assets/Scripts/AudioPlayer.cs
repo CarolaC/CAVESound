@@ -5,13 +5,13 @@ using CSharpSynth.Sequencer;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 
-// plays the sound of the instruments based on the sound area and pitch range selection
+// plays the selection sounds (based on sound area and pitch range) and the loop notes
 public class AudioPlayer : MonoBehaviour {
     
-    private StreamSynthesizer midiStreamSynthesizer;
+	private StreamSynthesizer midiStreamSynthesizer;
     private string bankFilePath = "GM Bank/gm";
     private int bufferSize = 1024;
-    private int chooseNoteVolume = 10;
+    private int chooseNoteVolume = 30;
     private int loopNoteVolume = 100;
     private int minPitch = 60;
     private int minInstrument = 0;
@@ -23,8 +23,10 @@ public class AudioPlayer : MonoBehaviour {
     private int activeSoundArea;
     private int activePitch;
 
-	// Use this for initialization
-	void Start () {
+	// Awake is called when the script instance
+	// is being loaded.
+	void Awake ()
+	{
         midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
         midiStreamSynthesizer.LoadBank(bankFilePath);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];		
