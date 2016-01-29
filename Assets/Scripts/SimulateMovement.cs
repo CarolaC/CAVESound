@@ -5,10 +5,11 @@ using System.Collections;
 public class SimulateMovement : MonoBehaviour {
 
     private float speed = 8;
+    private GameObject secondTarget;
 
 	// Use this for initialization
 	void Start () {
-	
+        secondTarget = GameObject.Find("SecondTarget");
 	}
 	
 	// Update is called once per frame
@@ -26,5 +27,7 @@ public class SimulateMovement : MonoBehaviour {
             transform.position += Vector3.up * speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.D))
             transform.position += Vector3.down * speed * Time.deltaTime;
+
+        secondTarget.transform.position = transform.position - new Vector3(1, 0, 0);
 	}
 }

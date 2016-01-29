@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CSharpSynth.Effects;
-using CSharpSynth.Sequencer;
 using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 
@@ -14,7 +12,6 @@ public class AudioPlayer : MonoBehaviour {
     private int chooseNoteVolume = 30;
     private int loopNoteVolume = 100;
     private int minPitch = 60;
-    private int minInstrument = 0;
     private float[] sampleBuffer;
     private float gain = 1f;
 
@@ -43,17 +40,17 @@ public class AudioPlayer : MonoBehaviour {
 
             activeSoundArea = soundAreaSelector.activeSoundArea;
             activePitch = pitchRangeSelector.activePitch;
-            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, chooseNoteVolume, minInstrument + activeSoundArea);
-            print("Played note with instrument " + activeSoundArea + " and pitch " + activePitch);
+            midiStreamSynthesizer.NoteOn(1, minPitch + activePitch, chooseNoteVolume, soundAreaSelector.activeInstrument);
+            print("Played note with instrument " + soundAreaSelector.activeInstrument + " and pitch " + activePitch);
         }
 	}
 
-    public void playLoopNote(LoopNote note)
+    public void PlayLoopNote(LoopNote note)
     {
-        StartCoroutine(loopNoteCoroutine(note));     
+        StartCoroutine(LoopNoteCoroutine(note));     
     }
 
-    IEnumerator loopNoteCoroutine(LoopNote note)
+    IEnumerator LoopNoteCoroutine(LoopNote note)
     {
         midiStreamSynthesizer.NoteOn(1, note.pitch, loopNoteVolume, note.instrument);
         yield return new WaitForSeconds(1);

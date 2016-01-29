@@ -26,7 +26,7 @@ public class SimulateRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.A)) 
+        if (Input.GetKeyDown(KeyCode.A)) 
 		{
 			setOnLoopEvent.Invoke ();
 			performRotation = true;

@@ -29,10 +29,10 @@ public class LoopManager : MonoBehaviour {
         audioPlayer = GameObject.Find("Listener").GetComponent<AudioPlayer>();
 		
 		setNoteManager = GameObject.Find("SoundManagers").GetComponent<SetNoteManager>();
-		setNoteManager.setOnLoopEvent.AddListener(setOnLoop);
+		setNoteManager.setOnLoopEvent.AddListener(SetOnLoop);
 
 		simulator = GameObject.Find("SecondTarget").GetComponent<SimulateRotation>();
-		simulator.setOnLoopEvent.AddListener(setOnLoop);
+		simulator.setOnLoopEvent.AddListener(SetOnLoop);
 
         // create beat
         loopNotes.Add(new LoopNote(beatInstrument, 80, 0, new Vector3(0, 0, 0)));
@@ -56,7 +56,7 @@ public class LoopManager : MonoBehaviour {
         // play note if time has been reached
         if (!lastNote && timer >= currentNote.time)
         {
-            audioPlayer.playLoopNote(currentNote);
+            audioPlayer.PlayLoopNote(currentNote);
             noteIndex++;
 
             // reset note index if it has reached the end of the list
@@ -91,11 +91,9 @@ public class LoopManager : MonoBehaviour {
 	}
 
     // this method is registered as listener
-	void setOnLoop() {
-		print("Set on loop was invoked");
-
-        LoopNote note = new LoopNote(soundAreaSelector.activeSoundArea, minPitch + pitchRangeSelector.activePitch, timer, new Vector3(0, 0, 0));
-        audioPlayer.playLoopNote(note);
+	void SetOnLoop() {
+        LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, minPitch + pitchRangeSelector.activePitch, timer, new Vector3(0, 0, 0));
+        audioPlayer.PlayLoopNote(note);
         pendingNotes.Add(note);
 	}
 }

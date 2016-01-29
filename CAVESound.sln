@@ -7,8 +7,6 @@ Project("{2EC6B848-0A12-A378-958C-6C65F2905F4E}") = "CAVESound", "Assembly-CShar
 EndProject
 Project("{2EC6B848-0A12-A378-958C-6C65F2905F4E}") = "CAVESound", "Assembly-CSharp-Editor.csproj", "{2D4F5F32-BDD8-B14D-4CDC-02E8E862AE86}"
 EndProject
-Project("{2EC6B848-0A12-A378-958C-6C65F2905F4E}") = "CAVESound", "Assembly-UnityScript.unityproj", "{192E4A6F-0D9A-8C81-0961-FE53FCB1BDC5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,15 +25,11 @@ Global
 		{2D4F5F32-BDD8-B14D-4CDC-02E8E862AE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D4F5F32-BDD8-B14D-4CDC-02E8E862AE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D4F5F32-BDD8-B14D-4CDC-02E8E862AE86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{192E4A6F-0D9A-8C81-0961-FE53FCB1BDC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{192E4A6F-0D9A-8C81-0961-FE53FCB1BDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{192E4A6F-0D9A-8C81-0961-FE53FCB1BDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{192E4A6F-0D9A-8C81-0961-FE53FCB1BDC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																				GlobalSection(MonoDevelopProperties) = preSolution
+																																																																														GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -54,5 +48,4 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
-
 EndGlobal
