@@ -449,10 +449,11 @@ public class NewScriptWindow : EditorWindow
 	private void Create ()
 	{
 		CreateScript ();
-
-		if (CanAddComponent ())
+        
+        // COMMENTED OUT BECAUSE OF UNITY 5.3.4!!!
+		/* if (CanAddComponent ())
 			InternalEditorUtility.AddScriptComponentUnchecked (m_GameObjectToAddTo,
-				AssetDatabase.LoadAssetAtPath (TargetPath (), typeof (MonoScript)) as MonoScript);
+				AssetDatabase.LoadAssetAtPath (TargetPath (), typeof (MonoScript)) as MonoScript); */
 		
 		Close ();
 		GUIUtility.ExitGUI ();

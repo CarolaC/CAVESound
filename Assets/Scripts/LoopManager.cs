@@ -9,6 +9,7 @@ public class LoopManager : MonoBehaviour {
 
 	private SoundAreaSelector soundAreaSelector;
 	private PitchRangeSelector pitchRangeSelector;
+    private SoundDirectionManager soundDirectionManager;
     private AudioPlayer audioPlayer;
 	private SimulateRotation simulator;
 	private SetNoteManager setNoteManager;
@@ -26,6 +27,7 @@ public class LoopManager : MonoBehaviour {
 	void Start () {
         soundAreaSelector = GameObject.Find("SoundManagers").GetComponent<SoundAreaSelector>();
         pitchRangeSelector = GameObject.Find("SoundManagers").GetComponent<PitchRangeSelector>();
+        soundDirectionManager = GameObject.Find("SoundManagers").GetComponent<SoundDirectionManager>();
         audioPlayer = GameObject.Find("Listener").GetComponent<AudioPlayer>();
 		
 		setNoteManager = GameObject.Find("SoundManagers").GetComponent<SetNoteManager>();
@@ -36,14 +38,14 @@ public class LoopManager : MonoBehaviour {
 
         // create beat
         loopNotes.Add(new LoopNote(beatInstrument, 80, 0, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 1, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 2, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 3, new Vector3(0, 0, 0)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 0.8f, new Vector3(0, 0, 0)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 1.6f, new Vector3(0, 0, 0)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 2.4f, new Vector3(0, 0, 0)));
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
 
         timer = 0;
-        loopDuration = 4;
+        loopDuration = 3.2f;
         noteIndex = 0;
         currentNote = loopNotes[noteIndex];
 	}
@@ -92,7 +94,7 @@ public class LoopManager : MonoBehaviour {
 
     // this method is registered as listener
 	void SetOnLoop() {
-        LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, minPitch + pitchRangeSelector.activePitch, timer, new Vector3(0, 0, 0));
+        LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
         audioPlayer.PlayLoopNote(note);
         pendingNotes.Add(note);
 	}

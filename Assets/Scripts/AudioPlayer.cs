@@ -52,6 +52,9 @@ public class AudioPlayer : MonoBehaviour {
 
     IEnumerator LoopNoteCoroutine(LoopNote note)
     {
+        //note.play();
+        //yield return null;
+
         midiStreamSynthesizer.NoteOn(1, note.pitch, loopNoteVolume, note.instrument);
         yield return new WaitForSeconds(1);
         midiStreamSynthesizer.NoteOff(1, note.pitch);
@@ -60,7 +63,7 @@ public class AudioPlayer : MonoBehaviour {
     // this function plays the audio data (code from UnitySynthTest.cs)
     // See http://unity3d.com/support/documentation/ScriptReference/MonoBehaviour.OnAudioFilterRead.html for reference code
     // If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.
-    private void OnAudioFilterRead(float[] data, int channels)
+    /*private void OnAudioFilterRead(float[] data, int channels)
     {
         //This uses the Unity specific float method we added to get the buffer
         midiStreamSynthesizer.GetNext(sampleBuffer);
@@ -69,5 +72,5 @@ public class AudioPlayer : MonoBehaviour {
         {
             data[i] = sampleBuffer[i] * gain;
         }
-    }
+    }*/
 }

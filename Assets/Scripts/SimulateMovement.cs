@@ -27,7 +27,5 @@ public class SimulateMovement : MonoBehaviour {
             transform.position += Vector3.up * speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.D))
             transform.position += Vector3.down * speed * Time.deltaTime;
-
-        secondTarget.transform.position = transform.position - new Vector3(1, 0, 0);
 	}
 }

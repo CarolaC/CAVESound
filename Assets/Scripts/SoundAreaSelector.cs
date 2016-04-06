@@ -6,10 +6,9 @@ using System.Collections.Generic;
 public class SoundAreaSelector : MonoBehaviour {
 
     public Transform listenerTransform;
-    public Vector2 caveTopLeftCorner;
-    public Vector2 caveBottomRightCorner;
     public GameObject soundAreaPrefab;
 
+    private CaveRectUtility caveRectUtil;
     private List<Rect> soundAreas = new List<Rect>();
     private List<GameObject> soundAreaPanels = new List<GameObject>();
     private List<int> instruments = new List<int>();
@@ -23,8 +22,7 @@ public class SoundAreaSelector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Rect caveRect = Rect.MinMaxRect(caveTopLeftCorner.x, caveTopLeftCorner.y, caveBottomRightCorner.x, caveBottomRightCorner.y);
-        print("CAVE Rect: " + caveRect);
+        caveRectUtil = GameObject.Find("CaveRect").GetComponent<CaveRectUtility>();
 
         soundAreaCount = PlayerPrefs.GetInt("NumSoundAreas");
         
@@ -37,7 +35,7 @@ public class SoundAreaSelector : MonoBehaviour {
             instruments.Add(PlayerPrefs.GetInt("Instrument" + i));
         }
 
-        divideRect(caveRect);
+        divideRect(caveRectUtil.caveRect);
 	}
 	
 	// Update is called once per frame
@@ -81,8 +79,8 @@ public class SoundAreaSelector : MonoBehaviour {
         for (int i = 0; i < soundAreas.Count; i++)
         {
             print("Sound Area " + i + ": " + soundAreas[i]);
-            soundAreaPanel = (GameObject)Instantiate(soundAreaPrefab, new Vector3(soundAreas[i].x, 0, soundAreas[i].y), Quaternion.identity);
-            soundAreaPanel.transform.localScale = new Vector3(soundAreas[i].width * 2, 0.1f, soundAreas[i].height * 2);
+            soundAreaPanel = (GameObject)Instantiate(soundAreaPrefab, new Vector3(soundAreas[i].center.x, 0, soundAreas[i].center.y), Quaternion.identity);
+            soundAreaPanel.transform.localScale = new Vector3(soundAreas[i].width, 0.1f, soundAreas[i].height);
             soundAreaPanels.Add(soundAreaPanel);
         }
     }
