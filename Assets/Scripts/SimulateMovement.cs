@@ -4,7 +4,7 @@ using System.Collections;
 // simulate the listener's movement by pressing the arrow keys
 public class SimulateMovement : MonoBehaviour {
 
-    private float speed = 8;
+    private float speed = 5;
     private GameObject secondTarget;
 
 	// Use this for initialization

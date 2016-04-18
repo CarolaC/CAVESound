@@ -5,7 +5,7 @@ using System.Collections;
 // simulate the rotation of the second target by pressing 'A', so that you can add loop notes with keyboard
 public class SimulateRotation : MonoBehaviour {
 
-    private float movementSpeed = 8;
+    private float movementSpeed = 5;
 	private float rotationSpeed = 200;
 	private bool performRotation = false;
 	private bool performRotationBack = false;

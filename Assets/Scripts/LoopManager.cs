@@ -37,10 +37,10 @@ public class LoopManager : MonoBehaviour {
 		simulator.setOnLoopEvent.AddListener(SetOnLoop);
 
         // create beat
-        loopNotes.Add(new LoopNote(beatInstrument, 80, 0, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 0.8f, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 1.6f, new Vector3(0, 0, 0)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 2.4f, new Vector3(0, 0, 0)));
+        loopNotes.Add(new LoopNote(beatInstrument, 80, 0, new Vector3(6, 2.5f, 2.8f)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 0.8f, new Vector3(7, 2.5f, 2.8f)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 1.6f, new Vector3(8, 2.5f, 2.8f)));
+        loopNotes.Add(new LoopNote(beatInstrument, 60, 2.4f, new Vector3(9, 2.5f, 2.8f)));
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
 

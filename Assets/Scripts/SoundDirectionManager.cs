@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// sends a raycast from the targets to the wall and returns the wall hit point
 public class SoundDirectionManager : MonoBehaviour {
 
+    public float soundLightHeight;
     private CaveRectUtility caveRectUtil;
     private GameObject listener;
     private GameObject secondTarget;
@@ -24,8 +26,8 @@ public class SoundDirectionManager : MonoBehaviour {
         walls.Add(GameObject.Find("Wall3"));
 
         lineRenderer = listener.GetComponent<LineRenderer>();
-        lineRenderer.SetColors(Color.red, Color.red);
-        lineRenderer.SetWidth(0.2f, 0.2f);
+        lineRenderer.SetColors(Color.white, Color.white);
+        lineRenderer.SetWidth(0.1f, 0.1f);
         lineRenderer.SetVertexCount(3);
 	}
 	
@@ -33,14 +35,14 @@ public class SoundDirectionManager : MonoBehaviour {
 	void Update () {
         // calculate line
         Vector3 direction = secondTarget.transform.position - listener.transform.position;
-        Vector3 pointTo = secondTarget.transform.position + direction;
+        Vector3 pointTo = secondTarget.transform.position + 2 * direction;
 
         // update linerenderer points
         lineRenderer.SetPosition(0, listener.transform.position);
         lineRenderer.SetPosition(1, secondTarget.transform.position);
         lineRenderer.SetPosition(2, pointTo);
 
-        // detect collision with sound sphere
+        // detect collision with wall
         RaycastHit hit;
         if (Physics.Raycast(secondTarget.transform.position, direction, out hit))
         {
@@ -49,7 +51,14 @@ public class SoundDirectionManager : MonoBehaviour {
                 if (hit.transform.gameObject.name == walls[i].name)
                 {
                     print("Raycast hit " + hit.transform.gameObject.name + " at " + hit.point);
-                    soundDirection = hit.point;
+
+                    // set hit point a bit closer to listener so that the light becomes visible in front of the wall
+                    Vector3 distanceToTarget = hit.point - secondTarget.transform.position;
+                    Vector3 shortenedDistanceToTarget = new Vector3(distanceToTarget.x * 0.1f, distanceToTarget.y * 0.1f, distanceToTarget.z * 0.1f);
+                    Vector3 newHitPoint = hit.point - shortenedDistanceToTarget;
+                    soundDirection.x = newHitPoint.x;
+                    soundDirection.y = soundLightHeight;
+                    soundDirection.z = newHitPoint.z;
                 }
             }
         }

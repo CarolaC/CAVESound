@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,10 +21,15 @@ public class SoundAreaSelector : MonoBehaviour {
     [HideInInspector]
     public int soundAreaCount;
 
-	// Use this for initialization
-	void Start () {
-        caveRectUtil = GameObject.Find("CaveRect").GetComponent<CaveRectUtility>();
+    public Text instrumentText;
 
+    public GameObject testLight;
+
+	// Use this for initialization
+    void Start()
+    {
+        caveRectUtil = GameObject.Find("CaveRect").GetComponent<CaveRectUtility>();
+        instrumentText.text = "";
         soundAreaCount = PlayerPrefs.GetInt("NumSoundAreas");
         
         if (soundAreaCount == 0)
@@ -44,11 +50,16 @@ public class SoundAreaSelector : MonoBehaviour {
         {
             if (soundAreas[i].Contains(new Vector2(listenerTransform.position.x, listenerTransform.position.z), true))
             {
-                soundAreaPanels[activeSoundArea].GetComponent<Renderer>().material.color = new Color(0, 0, 0);
-                activeSoundArea = i;
-                activeInstrument = instruments[activeSoundArea];
-                soundAreaPanels[activeSoundArea].GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-                print("Listener in Area " + activeSoundArea);
+                if (activeSoundArea != i)
+                {
+                    soundAreaPanels[activeSoundArea].GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+                    activeSoundArea = i;
+                    activeInstrument = instruments[activeSoundArea];
+                    soundAreaPanels[activeSoundArea].GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+                    print("Listener in Area " + activeSoundArea);
+                    StartCoroutine(testLightCoroutine());
+                    instrumentText.text = "Instrument " + activeInstrument;
+                }
             }
         }
 	}
@@ -83,6 +94,13 @@ public class SoundAreaSelector : MonoBehaviour {
             soundAreaPanel.transform.localScale = new Vector3(soundAreas[i].width, 0.1f, soundAreas[i].height);
             soundAreaPanels.Add(soundAreaPanel);
         }
+    }
+
+    private IEnumerator testLightCoroutine()
+    {
+        testLight.GetComponent<Light>().range = 5;
+        yield return new WaitForSeconds(0.2f);
+        testLight.GetComponent<Light>().range = 2;
     }
 
 }

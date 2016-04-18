@@ -7,7 +7,7 @@ public class LoopNote {
     public int pitch;
     public float time;    // in milliseconds
     public Vector3 direction;
-    public GameObject soundSphere;
+    public GameObject soundLight;
 
     public LoopNote(int instrument, int pitch, float time, Vector3 direction)
     {
@@ -16,11 +16,21 @@ public class LoopNote {
         this.time = time;
         this.direction = direction;
 
-        soundSphere = (GameObject)GameObject.Instantiate(GameObject.Find("SoundSphere"), direction, Quaternion.identity);
+        soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
     }
 
-    public void play()
+    public void Play()
     {
-        soundSphere.GetComponent<AudioSource>().Play();
+        soundLight.GetComponent<AudioSource>().Play();
+    }
+
+    // flashing light
+    public IEnumerator LightFlashCoroutine()
+    {
+        soundLight.GetComponent<Light>().range = 5;
+        Debug.Log("Light flash");
+        yield return new WaitForSeconds(0.2f);
+        soundLight.GetComponent<Light>().range = 2;
+        Debug.Log("Light normal");
     }
 }
