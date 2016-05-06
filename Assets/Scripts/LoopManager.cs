@@ -7,6 +7,9 @@ using System.Collections.Generic;
 // manages the loop cycle, creates new loop notes and adds them to the loop
 public class LoopManager : MonoBehaviour {
 
+    public float loopDuration;     // in milliseconds
+    public int numberOfBeats;
+
 	private SoundAreaSelector soundAreaSelector;
 	private PitchRangeSelector pitchRangeSelector;
     private SoundDirectionManager soundDirectionManager;
@@ -15,9 +18,9 @@ public class LoopManager : MonoBehaviour {
 	private SetNoteManager setNoteManager;
     private List<LoopNote> loopNotes = new List<LoopNote>();
     private List<LoopNote> pendingNotes = new List<LoopNote>();
+    private List<GameObject> beatPoints = new List<GameObject>();
     private int beatInstrument = 115;
     private float timer;
-    private float loopDuration;     // in milliseconds
     private int noteIndex;
     private LoopNote currentNote;
     private bool lastNote = false;
@@ -37,15 +40,18 @@ public class LoopManager : MonoBehaviour {
 		simulator.setOnLoopEvent.AddListener(SetOnLoop);
 
         // create beat
-        loopNotes.Add(new LoopNote(beatInstrument, 80, 0, new Vector3(6, 2.5f, 2.8f)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 0.8f, new Vector3(7, 2.5f, 2.8f)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 1.6f, new Vector3(8, 2.5f, 2.8f)));
-        loopNotes.Add(new LoopNote(beatInstrument, 60, 2.4f, new Vector3(9, 2.5f, 2.8f)));
+        float time = 0;
+        
+        for (int i = 0; i < numberOfBeats; i++)
+        {
+            loopNotes.Add(new LoopNote(beatInstrument, 60, time, new Vector3(-10.5f, 2.0f, 0)));
+            time += loopDuration / numberOfBeats;
+        }
+
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
 
         timer = 0;
-        loopDuration = 3.2f;
         noteIndex = 0;
         currentNote = loopNotes[noteIndex];
 	}

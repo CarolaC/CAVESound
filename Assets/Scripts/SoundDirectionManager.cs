@@ -57,7 +57,7 @@ public class SoundDirectionManager : MonoBehaviour {
                     Vector3 shortenedDistanceToTarget = new Vector3(distanceToTarget.x * 0.1f, distanceToTarget.y * 0.1f, distanceToTarget.z * 0.1f);
                     Vector3 newHitPoint = hit.point - shortenedDistanceToTarget;
                     soundDirection.x = newHitPoint.x;
-                    soundDirection.y = soundLightHeight;
+                    soundDirection.y = newHitPoint.y;
                     soundDirection.z = newHitPoint.z;
                 }
             }

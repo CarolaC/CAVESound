@@ -73,18 +73,27 @@ public class SoundAreaSelector : MonoBehaviour {
 			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
 			soundAreas.Add (new Rect (caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.5f, caveRect.height * 0.5f));
             soundAreas.Add(new Rect(caveRect.center.x, caveRect.center.y, caveRect.width * 0.5f, caveRect.height * 0.5f));
-		} 
-		else if (soundAreaCount == 8) 
-		{
-			soundAreas.Add (new Rect (caveRect.x, caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
-			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.25f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
-			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));			
-			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.75f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.25f));
-			soundAreas.Add (new Rect (caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));	
-			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.25f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));			
-			soundAreas.Add (new Rect (caveRect.x + (caveRect.width * 0.5f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));
-            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.75f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.25f));
 		}
+        else if (soundAreaCount == 6)
+        {
+            soundAreas.Add(new Rect(caveRect.x, caveRect.y, caveRect.width * 0.33f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.33f), caveRect.y, caveRect.width * 0.33f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.66f), caveRect.y, caveRect.width * 0.33f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.33f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.33f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.33f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.66f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.33f, caveRect.height * 0.5f));
+        }
+        else if (soundAreaCount == 8)
+        {
+            soundAreas.Add(new Rect(caveRect.x, caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.25f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.5f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.75f), caveRect.y, caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x, caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.25f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.5f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.5f));
+            soundAreas.Add(new Rect(caveRect.x + (caveRect.width * 0.75f), caveRect.y + (caveRect.height * 0.5f), caveRect.width * 0.25f, caveRect.height * 0.5f));
+        }
 
         GameObject soundAreaPanel;
         for (int i = 0; i < soundAreas.Count; i++)
