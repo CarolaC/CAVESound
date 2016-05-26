@@ -42,18 +42,20 @@ public class LoopManager : MonoBehaviour {
         // create beat
         float time = 0;
         
-        for (int i = 0; i < numberOfBeats; i++)
+        /*for (int i = 0; i < numberOfBeats; i++)
         {
-            loopNotes.Add(new LoopNote(beatInstrument, 60, time, new Vector3(-10.5f, 2.0f, 0)));
+            loopNotes.Add(new LoopNote(beatInstrument, new Color(0, 0, 0), 60, time, new Vector3(-10.5f, 2.0f, 0)));
             time += loopDuration / numberOfBeats;
-        }
+        }*/
 
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
 
         timer = 0;
         noteIndex = 0;
-        currentNote = loopNotes[noteIndex];
+
+        if (loopNotes.Count > 0)
+            currentNote = loopNotes[noteIndex];
 	}
 	
 	// Update is called once per frame
@@ -61,21 +63,24 @@ public class LoopManager : MonoBehaviour {
         timer += Time.deltaTime;
         //print("Time is: " + timer);
 
-        // play note if time has been reached
-        if (!lastNote && timer >= currentNote.time)
+        if (loopNotes.Count > 0)
         {
-            audioPlayer.PlayLoopNote(currentNote);
-            noteIndex++;
+            // play note if time has been reached
+            if (!lastNote && timer >= currentNote.time)
+            {
+                audioPlayer.PlayLoopNote(currentNote);
+                noteIndex++;
 
-            // reset note index if it has reached the end of the list
-            if (noteIndex == loopNotes.Count)
-            {
-                noteIndex = 0;
-                lastNote = true;
-            }
-            else
-            {
-                currentNote = loopNotes[noteIndex];
+                // reset note index if it has reached the end of the list
+                if (noteIndex == loopNotes.Count)
+                {
+                    noteIndex = 0;
+                    lastNote = true;
+                }
+                else
+                {
+                    currentNote = loopNotes[noteIndex];
+                }
             }
         }
 
@@ -84,10 +89,9 @@ public class LoopManager : MonoBehaviour {
         {
             // reset timer to overstepped milliseconds
             timer %= loopDuration;
-            lastNote = false;
-            currentNote = loopNotes[noteIndex];
             //print("new loop - Time is: " + timer);
-
+            lastNote = false;
+            
             // if the user has set some notes, add them to the loop
             if (pendingNotes.Count > 0)
             {
@@ -95,12 +99,15 @@ public class LoopManager : MonoBehaviour {
                 loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
                 pendingNotes.Clear();
             }
+
+            if (loopNotes.Count > 0)
+                currentNote = loopNotes[noteIndex];
         }
 	}
 
     // this method is registered as listener
 	void SetOnLoop() {
-        LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
+        LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, soundAreaSelector.activeColor, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
         audioPlayer.PlayLoopNote(note);
         pendingNotes.Add(note);
 	}

@@ -43,13 +43,13 @@ public class BeatVisualizer : MonoBehaviour {
 			beatPointPosition.x += beatPointOffset;
         }
 
-        timer = 0;
+        timer = 0; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-		beatCursor.transform.localPosition = beatCursorPosition;
+		beatCursor.transform.localPosition  = beatCursorPosition;
 		beatCursorPosition.x += (beatPanelWidth / loopDuration) * timer + beatStartPosition.x;
 
         // start new loop if loop duration has been reached

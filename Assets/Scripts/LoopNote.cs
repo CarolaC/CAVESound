@@ -4,19 +4,22 @@ using System.Collections;
 public class LoopNote {
 
     public int instrument;
+    public Color color;
     public int pitch;
     public float time;    // in milliseconds
     public Vector3 direction;
     public GameObject soundLight;
 
-    public LoopNote(int instrument, int pitch, float time, Vector3 direction)
+    public LoopNote(int instrument, Color color, int pitch, float time, Vector3 direction)
     {
         this.instrument = instrument;
+        this.color = color;
         this.pitch = pitch;
         this.time = time;
         this.direction = direction;
 
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
+        soundLight.GetComponent<Light>().color = color;
     }
 
     public void Play()

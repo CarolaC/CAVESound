@@ -49,6 +49,9 @@ public class SoundAreaPanelsManager : MonoBehaviour {
         for (int i = 0; i < soundAreaPanels.Count; i++)
         {
             PlayerPrefs.SetInt("Instrument" + i, soundAreaPanels[i].GetComponent<Instrument>().midiInstrument);
+            PlayerPrefs.SetFloat("Instrument" + i + "Red", soundAreaPanels[i].GetComponent<Instrument>().color.r);
+            PlayerPrefs.SetFloat("Instrument" + i + "Green", soundAreaPanels[i].GetComponent<Instrument>().color.g);
+            PlayerPrefs.SetFloat("Instrument" + i + "Blue", soundAreaPanels[i].GetComponent<Instrument>().color.b);
         }
     }
 }
