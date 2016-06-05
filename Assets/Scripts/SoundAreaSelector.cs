@@ -39,16 +39,23 @@ public class SoundAreaSelector : MonoBehaviour {
         instrumentText.text = "";
         soundAreaCount = PlayerPrefs.GetInt("NumSoundAreas");
         soundAreaPanels = soundAreaVisualizer.soundAreaPanels;
-        
+
         if (soundAreaCount == 0)
             soundAreaCount = 4;
+
+        colors.Add(new Color32(255, 255, 145, 255));
+        colors.Add(new Color32(255, 225, 145, 255));
+        colors.Add(new Color32(255, 195, 145, 255));
+        colors.Add(new Color32(255, 165, 145, 255));
+        colors.Add(new Color32(255, 135, 145, 255));
+        colors.Add(new Color32(255, 105, 145, 255));
+        colors.Add(new Color32(255, 75, 145, 255));
+        colors.Add(new Color32(255, 45, 145, 255));
 
         // get instruments that the user chose in the menu
         for (int i = 0; i < soundAreaCount; i++)
         {
             instruments.Add(PlayerPrefs.GetInt("Instrument" + i));
-            colors.Add(new Color(PlayerPrefs.GetFloat("Instrument" + i + "Red"), PlayerPrefs.GetFloat("Instrument" + i + "Green"), 
-                PlayerPrefs.GetFloat("Instrument" + i + "Blue")));
         }
 
 		// divide the cave rect into sound areas
@@ -72,7 +79,7 @@ public class SoundAreaSelector : MonoBehaviour {
                     soundAreaPanels[activeSoundArea].GetComponent<Image>().color = activeColor;
                     print("Listener in Area " + activeSoundArea);
                     StartCoroutine(testLightCoroutine());
-                    instrumentText.text = "Instrument " + activeInstrument;
+                    instrumentText.text = "" + activeInstrument;
                 }
             }
         }

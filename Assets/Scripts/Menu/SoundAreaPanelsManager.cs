@@ -7,7 +7,8 @@ public class SoundAreaPanelsManager : MonoBehaviour {
 
     public Dropdown numSoundAreasDropDown;
     public GameObject soundAreaPanelPrefab;
-    private List<GameObject> soundAreaPanels = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> soundAreaPanels = new List<GameObject>();
 
     private DragInstrument dragger;
 
@@ -49,9 +50,6 @@ public class SoundAreaPanelsManager : MonoBehaviour {
         for (int i = 0; i < soundAreaPanels.Count; i++)
         {
             PlayerPrefs.SetInt("Instrument" + i, soundAreaPanels[i].GetComponent<Instrument>().midiInstrument);
-            PlayerPrefs.SetFloat("Instrument" + i + "Red", soundAreaPanels[i].GetComponent<Instrument>().color.r);
-            PlayerPrefs.SetFloat("Instrument" + i + "Green", soundAreaPanels[i].GetComponent<Instrument>().color.g);
-            PlayerPrefs.SetFloat("Instrument" + i + "Blue", soundAreaPanels[i].GetComponent<Instrument>().color.b);
         }
     }
 }

@@ -36,7 +36,7 @@ public class PitchRangeSelector : MonoBehaviour {
             if ((listenerTransform.position.y > pitchRanges[i]) && (listenerTransform.position.y < pitchRanges[i] + pitchRangeLength))
             {
                 activePitch = i;
-                print("Listener in Pitch Range " + i);
+                //print("Listener in Pitch Range " + i);
             }
         }
 	}

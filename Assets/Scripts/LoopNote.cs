@@ -22,18 +22,29 @@ public class LoopNote {
         soundLight.GetComponent<Light>().color = color;
     }
 
-    public void Play()
+    public void PlayAudio()
     {
         soundLight.GetComponent<AudioSource>().Play();
+    }
+
+    public void PlayMidi()
+    {
+        soundLight.GetComponent<MidiPlayer>().Play(this);
     }
 
     // flashing light
     public IEnumerator LightFlashCoroutine()
     {
-        soundLight.GetComponent<Light>().range = 3;
+        soundLight.GetComponent<Light>().intensity = 1.5f;
         Debug.Log("Light flash");
         yield return new WaitForSeconds(0.2f);
-        soundLight.GetComponent<Light>().range = 1;
+        soundLight.GetComponent<Light>().intensity = 0.5f;
         Debug.Log("Light normal");
+    }
+
+    public void DeleteLight()
+    {
+        soundLight.GetComponent<MidiPlayer>().Stop(this);
+        UnityEngine.Object.Destroy(soundLight);
     }
 }

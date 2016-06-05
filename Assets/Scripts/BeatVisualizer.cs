@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// manages the visualization on the canvas beat panel
 public class BeatVisualizer : MonoBehaviour {
 
     public Canvas canvas;

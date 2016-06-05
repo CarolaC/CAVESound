@@ -11,6 +11,8 @@ public class SoundDirectionManager : MonoBehaviour {
     private GameObject secondTarget;
     private List<GameObject> walls = new List<GameObject>();
     private LineRenderer lineRenderer;
+    private GameObject laserPointer;
+    private bool lineRendererActive = true;
 
     [HideInInspector]
     public Vector3 soundDirection;
@@ -20,27 +22,37 @@ public class SoundDirectionManager : MonoBehaviour {
         caveRectUtil = GameObject.Find("CaveRect").GetComponent<CaveRectUtility>();
         listener = GameObject.Find("Listener");
         secondTarget = GameObject.Find("SecondTarget");
+        laserPointer = GameObject.Find("LaserPointer");
 
         walls.Add(GameObject.Find("Wall1"));
         walls.Add(GameObject.Find("Wall2"));
         walls.Add(GameObject.Find("Wall3"));
 
         lineRenderer = listener.GetComponent<LineRenderer>();
-        lineRenderer.SetColors(Color.white, Color.white);
-        lineRenderer.SetWidth(0.1f, 0.1f);
+        lineRenderer.SetColors(Color.red, Color.red);
+        lineRenderer.SetWidth(0.02f, 0.02f);
         lineRenderer.SetVertexCount(3);
 	}
-	
+
+    public void ToggleLineRenderer(bool active)
+    {
+        lineRendererActive = active;
+        lineRenderer.enabled = active;
+    }
+
 	// Update is called once per frame
 	void Update () {
         // calculate line
         Vector3 direction = secondTarget.transform.position - listener.transform.position;
         Vector3 pointTo = secondTarget.transform.position + 2 * direction;
 
-        // update linerenderer points
-        lineRenderer.SetPosition(0, listener.transform.position);
-        lineRenderer.SetPosition(1, secondTarget.transform.position);
-        lineRenderer.SetPosition(2, pointTo);
+        if (lineRendererActive)
+        {
+            // update linerenderer points
+            lineRenderer.SetPosition(0, listener.transform.position);
+            lineRenderer.SetPosition(1, secondTarget.transform.position);
+            lineRenderer.SetPosition(2, pointTo);
+        }
 
         // detect collision with wall
         RaycastHit hit;
@@ -50,7 +62,7 @@ public class SoundDirectionManager : MonoBehaviour {
             {
                 if (hit.transform.gameObject.name == walls[i].name)
                 {
-                    print("Raycast hit " + hit.transform.gameObject.name + " at " + hit.point);
+                    //print("Raycast hit " + hit.transform.gameObject.name + " at " + hit.point);
 
                     // set hit point a bit closer to listener so that the light becomes visible in front of the wall
                     Vector3 distanceToTarget = hit.point - secondTarget.transform.position;
@@ -59,6 +71,7 @@ public class SoundDirectionManager : MonoBehaviour {
                     soundDirection.x = newHitPoint.x;
                     soundDirection.y = newHitPoint.y;
                     soundDirection.z = newHitPoint.z;
+                    laserPointer.transform.position = newHitPoint;
                 }
             }
         }

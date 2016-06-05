@@ -7,6 +7,8 @@ using System.Collections.Generic;
 // manages the loop cycle, creates new loop notes and adds them to the loop
 public class LoopManager : MonoBehaviour {
 
+    private bool playMidi = true;
+
     public float loopDuration;     // in milliseconds
     public int numberOfBeats;
 
@@ -68,7 +70,11 @@ public class LoopManager : MonoBehaviour {
             // play note if time has been reached
             if (!lastNote && timer >= currentNote.time)
             {
-                audioPlayer.PlayLoopNote(currentNote);
+                if (playMidi)
+                    currentNote.PlayMidi();
+                else
+                    audioPlayer.PlayLoopNote(currentNote);
+
                 noteIndex++;
 
                 // reset note index if it has reached the end of the list
@@ -106,9 +112,32 @@ public class LoopManager : MonoBehaviour {
 	}
 
     // this method is registered as listener
-	void SetOnLoop() {
+	void SetOnLoop() 
+    {
         LoopNote note = new LoopNote(soundAreaSelector.activeInstrument, soundAreaSelector.activeColor, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
-        audioPlayer.PlayLoopNote(note);
+        
+        if (playMidi)
+            note.PlayMidi();
+        else
+            audioPlayer.PlayLoopNote(note);
+        
         pendingNotes.Add(note);
 	}
+
+    public void ResetButtonClickHandler()
+    {
+        foreach (LoopNote pendingNote in pendingNotes)
+        {
+            pendingNote.DeleteLight();
+        }
+        pendingNotes.Clear();
+
+        foreach (LoopNote loopNote in loopNotes)
+        {
+            loopNote.DeleteLight();
+        }
+        loopNotes.Clear();
+
+        noteIndex = 0;
+    }
 }

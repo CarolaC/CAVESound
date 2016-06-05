@@ -72,9 +72,11 @@
      <Compile Include="Assets\Scripts\Menu\DragInstrument.cs" />
      <Compile Include="Assets\Scripts\Menu\DropInstrument.cs" />
      <Compile Include="Assets\Scripts\Menu\Instrument.cs" />
+     <Compile Include="Assets\Scripts\Menu\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuAudioPlayer.cs" />
      <Compile Include="Assets\Scripts\Menu\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Menu\SoundAreaPanelsManager.cs" />
+     <Compile Include="Assets\Scripts\MidiPlayer.cs" />
      <Compile Include="Assets\Scripts\PitchRangeSelector.cs" />
      <Compile Include="Assets\Scripts\SetNoteManager.cs" />
      <Compile Include="Assets\Scripts\SimulateMovement.cs" />
