@@ -24,8 +24,12 @@ public class OptitrackRigidBody : MonoBehaviour {
 
     public GameObject originOverride;
 
+	// MODIFICATION OF THE SCRIPT
+	private Vector3 caveRectCenter;
+
     void Start() {
         //optitrackTransform  = new GameObject().transform;
+		caveRectCenter = GameObject.Find("CaveRect").GetComponent<CaveRectUtility>().caveRect.center;
     }
 
 	void Update () {
@@ -49,13 +53,15 @@ public class OptitrackRigidBody : MonoBehaviour {
 			}
 		}
 		else {
-            if (usePostionTracking)
-                if (originOverride != null)
-                {
-                    transform.position = (OptitrackRigidBodyManager.instance.rigidBodyPositions[index] - OptitrackRigidBodyManager.instance.origin.position) + originOverride.transform.position;
-                }
-                else
-                    transform.position = OptitrackRigidBodyManager.instance.rigidBodyPositions[index];
+			if (usePostionTracking)
+			if (originOverride != null) {
+				transform.position = (OptitrackRigidBodyManager.instance.rigidBodyPositions [index] - OptitrackRigidBodyManager.instance.origin.position) + originOverride.transform.position;
+			} else {
+				Vector3 optitrackPosition = OptitrackRigidBodyManager.instance.rigidBodyPositions [index];
+				// mirror at cave center
+				Vector3 distanceToCenter = caveRectCenter - optitrackPosition;
+				transform.position = new Vector3(2 * distanceToCenter.x, optitrackPosition.y, 2 * distanceToCenter.z);
+			}
 
             if (useRotationTracking)
                 if (originOverride != null)

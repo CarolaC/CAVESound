@@ -21,9 +21,9 @@ public class SetNoteManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//print ("ANGLES: " + secondTargetTransform.rotation.eulerAngles.x + ", " + secondTargetTransform.rotation.eulerAngles.y + ", " + secondTargetTransform.rotation.eulerAngles.z);
+		print ("ANGLES: " + secondTargetTransform.rotation.eulerAngles.x + ", " + secondTargetTransform.rotation.eulerAngles.y + ", " + secondTargetTransform.rotation.eulerAngles.z);
 
-		if (secondTargetTransform.rotation.eulerAngles.z > 200 && timeOut == 0) {
+		if (secondTargetTransform.rotation.eulerAngles.z > 160 && timeOut == 0) {
 			print ("You have set a loop note!");
 			setOnLoopEvent.Invoke ();
 			timeOut = 100;

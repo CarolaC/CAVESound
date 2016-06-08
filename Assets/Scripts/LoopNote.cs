@@ -35,10 +35,10 @@ public class LoopNote {
     // flashing light
     public IEnumerator LightFlashCoroutine()
     {
-        soundLight.GetComponent<Light>().intensity = 1.5f;
+        soundLight.GetComponent<Light>().intensity = 4f;
         Debug.Log("Light flash");
         yield return new WaitForSeconds(0.2f);
-        soundLight.GetComponent<Light>().intensity = 0.5f;
+        soundLight.GetComponent<Light>().intensity = 3f;
         Debug.Log("Light normal");
     }
 
