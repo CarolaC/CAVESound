@@ -1,25 +1,39 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LoopNote {
 
-    public int instrument;
+    public int soundArea;
+	public int pitchRange;
+    public int instrumentNum;
     public Color color;
-    public int pitch;
+    public int pitchNum;
     public float time;    // in milliseconds
     public Vector3 direction;
     public GameObject soundLight;
+    public GameObject beatSoundPoint;
+    public BeatVisualizer beatVisualizer;
 
-    public LoopNote(int instrument, Color color, int pitch, float time, Vector3 direction)
-    {
-        this.instrument = instrument;
-        this.color = color;
-        this.pitch = pitch;
+	public LoopNote(Color color, int soundArea, int instrumentNum, int pitchRange, int pitchNum, float time, Vector3 direction)
+	{
+		this.color = color;
+		this.soundArea = soundArea;
+		this.pitchRange = pitchRange;
+		this.instrumentNum = instrumentNum;
+        this.pitchNum = pitchNum;
         this.time = time;
         this.direction = direction;
 
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
+
+        beatVisualizer = GameObject.Find("BeatPanel").GetComponent<BeatVisualizer>();
+        beatSoundPoint = (GameObject)GameObject.Instantiate(beatVisualizer.beatPointPrefab);
+        beatSoundPoint.transform.localPosition = beatVisualizer.calculateBeatSoundPointPosition(pitchRange, time);
+        beatSoundPoint.transform.localScale = new Vector3(1, 0.2f, 1);
+        beatSoundPoint.transform.SetParent(beatVisualizer.gameObject.transform, false);
         soundLight.GetComponent<Light>().color = color;
+        beatSoundPoint.GetComponent<Image>().color = color;
     }
 
     public void PlayAudio()
@@ -46,5 +60,6 @@ public class LoopNote {
     {
         soundLight.GetComponent<MidiPlayer>().Stop(this);
         UnityEngine.Object.Destroy(soundLight);
+        UnityEngine.Object.Destroy(beatSoundPoint);
     }
 }

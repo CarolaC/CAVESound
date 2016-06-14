@@ -7,16 +7,19 @@ public class BeatVisualizer : MonoBehaviour {
 
     public Canvas canvas;
     public GameObject beatPointPrefab;
+	public Camera activeCamera;
 
-    private float timer;
-    private int numberOfBeats;
-    private float loopDuration;
+	private float loopDuration;
+	private int numberOfBeats;
+	private int pitchCount;
+
+	private float timer;
 	private GameObject beatCursor;
-	// a bit of offset so that the beatCursor and -Points are inside the beatPanel rectangle
-	private Vector3 beatStartPosition = new Vector3 (15, 0, 0);
 	private Vector3 beatCursorPosition;
     private float beatPanelWidth;
-    private List<GameObject> beatPoints = new List<GameObject>();
+	private List<GameObject> beatPoints = new List<GameObject>();
+	private float beatPanelHeight;
+    private float beatPanelLayerHeight;
     
 	// Use this for initialization
 	void Start () {
@@ -24,17 +27,20 @@ public class BeatVisualizer : MonoBehaviour {
         numberOfBeats = loopManager.numberOfBeats;
         loopDuration = loopManager.loopDuration;
 
+		PitchRangeSelector pitchRangeSelector = GameObject.Find("SoundManagers").GetComponent<PitchRangeSelector>();
+		pitchCount = pitchRangeSelector.pitchCount;
+
         RectTransform rectTransform = GetComponent<RectTransform>();
         beatPanelWidth = rectTransform.rect.width * canvas.scaleFactor;
 
 		beatCursor = GameObject.Find("BeatCursor");
-		beatCursorPosition = beatStartPosition;
+		beatCursorPosition = new Vector3 (0, 0, 0);
 
 		GameObject beatPoint;
-		Vector3 beatPointPosition = beatStartPosition;
 		float beatPointOffset = beatPanelWidth / numberOfBeats;
+		Vector3 beatPointPosition = new Vector3 (beatPointOffset, 0, 0);
 
-        for (int i = 0; i < numberOfBeats; i++)
+		for (int i = 0; i < (numberOfBeats - 1); i++)
         {
 			beatPoint = (GameObject)Instantiate(beatPointPrefab);
 			beatPoint.transform.localPosition = beatPointPosition;
@@ -44,21 +50,30 @@ public class BeatVisualizer : MonoBehaviour {
 			beatPointPosition.x += beatPointOffset;
         }
 
+		beatPanelHeight = rectTransform.rect.height * canvas.scaleFactor;
+		beatPanelLayerHeight = beatPanelHeight / pitchCount;
+
         timer = 0; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-		beatCursor.transform.localPosition  = beatCursorPosition;
-		beatCursorPosition.x += (beatPanelWidth / loopDuration) * timer + beatStartPosition.x;
+		beatCursor.transform.localPosition = beatCursorPosition;
+		// subtract half of the beatPanelWidth because the null-point is in the middle of the panel
+		beatCursorPosition.x = (beatPanelWidth / loopDuration) * timer - (beatPanelWidth * 0.5f);
 
         // start new loop if loop duration has been reached
         if (timer > loopDuration)
         {
             // reset timer to overstepped milliseconds
             timer %= loopDuration;
-            beatCursorPosition.x = (beatPanelWidth / loopDuration) * timer + beatStartPosition.x;
+			beatCursorPosition.x = (beatPanelWidth / loopDuration) * timer - (beatPanelWidth * 0.5f);
         }
 	}
+
+    public Vector3 calculateBeatSoundPointPosition(int pitch, float time)
+    {
+		return new Vector3((beatPanelWidth / loopDuration) * timer, beatPanelLayerHeight * pitch - (beatPanelHeight * 0.5f) + (beatPanelLayerHeight * 0.5f), 0);
+    }
 }

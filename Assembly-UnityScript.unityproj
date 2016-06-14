@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity5_3/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Programme/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity5_3/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Programme/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -242,10 +242,10 @@
      <None Include="Assets\Resources\GM Bank\Shanai.sfz.txt" />
      <None Include="Assets\Resources\GM Bank\SweepPad.sfz.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity5_3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity5_3/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Programme/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

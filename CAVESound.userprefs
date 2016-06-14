@@ -1,24 +1,27 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LoopNote.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MidiPlayer.cs">
     <Files>
-      <File FileName="Assets\Scripts\LoopNote.cs" Line="41" Column="55" />
+      <File FileName="Assets\Scripts\BeatVisualizer.cs" Line="63" Column="57" />
+      <File FileName="Assets\Scripts\LoopNote.cs" Line="18" Column="65" />
       <File FileName="Assets\Optitrack\OptitrackRigidBody.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SoundAreaSelector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BeatVisualizer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Menu\SoundAreaPanelsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LoopManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LoopManager.cs" Line="117" Column="164" />
       <File FileName="Assets\Scripts\SoundDirectionManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Menu\DragInstrument.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CaveRectUtility.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SetNoteManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MidiPlayer.cs" Line="19" Column="3" />
+      <File FileName="Assets\Plugins\CSharpSynth\Synthesis\StreamSynthesizer.cs" Line="351" Column="1" />
+      <File FileName="Assets\Scripts\Menu\LightLoop.cs" Line="27" Column="27" />
+      <File FileName="Assets\Scripts\Menu\LightState.cs" Line="6" Column="18" />
+      <File FileName="Assets\Scripts\PitchRangeSelector.cs" Line="12" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="D:\Studium\MA Sound Vision\2. Semester\CAVE\CAVESound\Assets\Plugins\CSharpSynth\Synthesis\StreamSynthesizer.cs" line="350" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

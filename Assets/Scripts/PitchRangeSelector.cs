@@ -9,7 +9,8 @@ public class PitchRangeSelector : MonoBehaviour {
     public float armRangeBottom;
     public float armRangeTop;
 
-    private int pitchCount = 8;
+	[HideInInspector]
+    public int pitchCount = 8;
     private float pitchRangeLength;
     private List<float> pitchRanges = new List<float>();
     [HideInInspector]

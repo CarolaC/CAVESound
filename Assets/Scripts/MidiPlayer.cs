@@ -30,15 +30,15 @@ public class MidiPlayer : MonoBehaviour {
     
     IEnumerator LoopNoteCoroutine(LoopNote note)
     {
-        midiStreamSynthesizer.NoteOn(1, note.pitch, loopNoteVolume, note.instrument);
+        midiStreamSynthesizer.NoteOn(1, note.pitchNum, loopNoteVolume, note.instrumentNum);
         StartCoroutine(note.LightFlashCoroutine());
         yield return new WaitForSeconds(1);
-        midiStreamSynthesizer.NoteOff(1, note.pitch);
+		midiStreamSynthesizer.NoteOff(1, note.pitchNum);
     }
 
     public void Stop(LoopNote note)
     {
-        midiStreamSynthesizer.NoteOff(1, note.pitch);
+		midiStreamSynthesizer.NoteOff(1, note.pitchNum);
     }
 
     // this function plays the audio data (code from UnitySynthTest.cs)
