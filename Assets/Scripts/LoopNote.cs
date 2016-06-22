@@ -26,6 +26,7 @@ public class LoopNote {
         this.direction = direction;
 
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
+		soundLight.GetComponent<AudioSource> ().pitch = pitchRange;
 
         beatVisualizer = GameObject.Find("BeatPanel").GetComponent<BeatVisualizer>();
         beatSoundPoint = (GameObject)GameObject.Instantiate(beatVisualizer.beatPointPrefab);

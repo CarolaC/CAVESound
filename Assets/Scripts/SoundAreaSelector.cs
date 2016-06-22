@@ -12,7 +12,8 @@ public class SoundAreaSelector : MonoBehaviour {
     private CaveRectUtility caveRectUtil;
     private SoundAreaVisualizer soundAreaVisualizer;
     private List<Rect> soundAreas = new List<Rect>();
-    private List<GameObject> soundAreaFloors = new List<GameObject>();
+	[HideInInspector]
+    public List<GameObject> soundAreaFloors = new List<GameObject>();
     private List<GameObject> soundAreaPanels = new List<GameObject>();
 	
     private List<int> instruments = new List<int>();

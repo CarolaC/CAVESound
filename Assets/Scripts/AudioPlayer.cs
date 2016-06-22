@@ -23,6 +23,7 @@ public class AudioPlayer : MonoBehaviour {
     private PitchRangeSelector pitchRangeSelector;
     private int activeSoundArea;
     private int activePitch;
+	private AudioSource activeSoundAreaAudioSource;
 
 	// Awake is called when the script instance
 	// is being loaded.
@@ -44,7 +45,12 @@ public class AudioPlayer : MonoBehaviour {
             activePitch = pitchRangeSelector.activePitch;
 
 			if (playMidi)
-            	StartCoroutine(SelectionSoundMidiCoroutine());
+				StartCoroutine (SelectionSoundMidiCoroutine ());
+			else {
+				activeSoundAreaAudioSource = soundAreaSelector.soundAreaFloors [activeSoundArea].GetComponent<AudioSource> ();
+				activeSoundAreaAudioSource.pitch = activePitch;
+				activeSoundAreaAudioSource.Play ();
+			}
         }
 	}
 
