@@ -7,9 +7,7 @@ using System.Collections.Generic;
 // manages the loop cycle, creates new loop notes and adds them to the loop
 public class LoopManager : MonoBehaviour {
 
-    private bool playMidi = true;
-
-    public float loopDuration;     // in milliseconds
+	public float loopDuration;     // in milliseconds
     public int numberOfBeats;
 
 	private SoundAreaSelector soundAreaSelector;
@@ -41,14 +39,16 @@ public class LoopManager : MonoBehaviour {
 		simulator = GameObject.Find("SecondTarget").GetComponent<SimulateRotation>();
 		simulator.setOnLoopEvent.AddListener(SetOnLoop);
 
-        // create beat
-        float time = 0;
-        
-        /*for (int i = 0; i < numberOfBeats; i++)
-        {
-            loopNotes.Add(new LoopNote(beatInstrument, new Color(0, 0, 0), 60, time, new Vector3(-10.5f, 2.0f, 0)));
-            time += loopDuration / numberOfBeats;
-        }*/
+		/*
+		if (!playMidi) {
+			// create beat
+			float time = 0;
+
+			for (int i = 0; i < numberOfBeats; i++) {
+				loopNotes.Add (new LoopNote (soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, beatInstrument, pitchRangeSelector.activePitch, 60, time, new Vector3 (-10.5f, 2.0f, 0)));
+				time += loopDuration / numberOfBeats;
+			}
+		}*/
 
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
@@ -70,10 +70,7 @@ public class LoopManager : MonoBehaviour {
             // play note if time has been reached
             if (!lastNote && timer >= currentNote.time)
             {
-                if (playMidi)
-                    currentNote.PlayMidi();
-                else
-                    audioPlayer.PlayLoopNote(currentNote);
+                audioPlayer.PlayLoopNote(currentNote);
 
                 noteIndex++;
 
@@ -116,10 +113,7 @@ public class LoopManager : MonoBehaviour {
     {
 		LoopNote note = new LoopNote(soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, pitchRangeSelector.activePitch, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
         
-        if (playMidi)
-            note.PlayMidi();
-        else
-            audioPlayer.PlayLoopNote(note);
+        audioPlayer.PlayLoopNote(note);
         
         pendingNotes.Add(note);
 	}
@@ -129,12 +123,14 @@ public class LoopManager : MonoBehaviour {
         foreach (LoopNote pendingNote in pendingNotes)
         {
             pendingNote.DeleteLight();
+			audioPlayer.Stop (pendingNote);
         }
         pendingNotes.Clear();
 
         foreach (LoopNote loopNote in loopNotes)
         {
-            loopNote.DeleteLight();
+			loopNote.DeleteLight();
+			audioPlayer.Stop (loopNote);
         }
         loopNotes.Clear();
 

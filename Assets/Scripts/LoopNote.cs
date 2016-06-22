@@ -36,17 +36,7 @@ public class LoopNote {
         beatSoundPoint.GetComponent<Image>().color = color;
     }
 
-    public void PlayAudio()
-    {
-        soundLight.GetComponent<AudioSource>().Play();
-    }
-
-    public void PlayMidi()
-    {
-        soundLight.GetComponent<MidiPlayer>().Play(this);
-    }
-
-    // flashing light
+	// flashing light
     public IEnumerator LightFlashCoroutine()
     {
         soundLight.GetComponent<Light>().intensity = 4f;
@@ -58,7 +48,6 @@ public class LoopNote {
 
     public void DeleteLight()
     {
-        soundLight.GetComponent<MidiPlayer>().Stop(this);
         UnityEngine.Object.Destroy(soundLight);
         UnityEngine.Object.Destroy(beatSoundPoint);
     }
