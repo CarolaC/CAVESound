@@ -62,12 +62,19 @@ public class SoundDirectionManager : MonoBehaviour {
             {
                 if (hit.transform.gameObject.name == walls[i].name)
                 {
-                    //print("Raycast hit " + hit.transform.gameObject.name + " at " + hit.point);
+                   //print("Raycast hit " + hit.transform.gameObject.name + " at " + hit.point);
 
-                    // set hit point a bit closer to listener so that the light becomes visible in front of the wall
-                    Vector3 distanceToTarget = hit.point - secondTarget.transform.position;
-                    Vector3 shortenedDistanceToTarget = new Vector3(distanceToTarget.x * 0.1f, distanceToTarget.y * 0.1f, distanceToTarget.z * 0.1f);
-                    Vector3 newHitPoint = hit.point - shortenedDistanceToTarget;
+					// set hit point a bit closer to listener so that the light becomes visible in front of the wall
+					Vector3 newHitPoint;
+					if (walls [i].name.Equals ("Wall1"))
+						newHitPoint = new Vector3 (hit.point.x + 0.1f, hit.point.y, hit.point.z);
+					else if (walls [i].name.Equals ("Wall2"))
+						newHitPoint = new Vector3 (hit.point.x, hit.point.y, hit.point.z - 0.1f);
+					else if (walls [i].name.Equals ("Wall3"))
+						newHitPoint = new Vector3 (hit.point.x - 0.1f, hit.point.y, hit.point.z);
+					else
+						newHitPoint = hit.point;
+					
                     soundDirection.x = newHitPoint.x;
                     soundDirection.y = newHitPoint.y;
                     soundDirection.z = newHitPoint.z;
