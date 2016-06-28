@@ -23,6 +23,8 @@ public class SoundAreaSelector : MonoBehaviour {
     public int activeSoundArea;
     [HideInInspector]
     public int activeInstrument;
+	[HideInInspector]
+	public AudioClip activeAudioClip;
     [HideInInspector]
     public Color activeColor;
     [HideInInspector]
@@ -30,6 +32,7 @@ public class SoundAreaSelector : MonoBehaviour {
 
     public Text instrumentText;
     public GameObject testLight;
+	private AudioPlayer audioPlayer;
 
 	// Use this for initialization
     void Start()
@@ -61,6 +64,15 @@ public class SoundAreaSelector : MonoBehaviour {
 
 		// divide the cave rect into sound areas
         divideCaveRect(caveRectUtil.caveRect);
+
+		// assign audio files
+		audioPlayer = GameObject.Find("Listener").GetComponent<AudioPlayer>();
+
+		if (!audioPlayer.playMidi) {
+			for (int i = 0; i < soundAreaCount; i++) {
+				soundAreaFloors[i].GetComponent<AudioSource>().clip = audioPlayer.audioFiles [instruments [i]];
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -75,6 +87,12 @@ public class SoundAreaSelector : MonoBehaviour {
                     soundAreaPanels[activeSoundArea].GetComponent<Image>().color = new Color(1, 1, 1);
                     activeSoundArea = i;
                     activeInstrument = instruments[activeSoundArea];
+
+					if (!audioPlayer.playMidi)
+						activeAudioClip = soundAreaFloors [activeSoundArea].GetComponent<AudioSource> ().clip;
+					else
+						activeAudioClip = null;
+					
                     activeColor = colors[activeSoundArea];
                     soundAreaFloors[activeSoundArea].GetComponent<Renderer>().material.color = activeColor;
                     soundAreaPanels[activeSoundArea].GetComponent<Image>().color = activeColor;

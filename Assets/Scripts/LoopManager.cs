@@ -111,7 +111,7 @@ public class LoopManager : MonoBehaviour {
     // this method is registered as listener
 	void SetOnLoop() 
     {
-		LoopNote note = new LoopNote(soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, pitchRangeSelector.activePitch, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
+		LoopNote note = new LoopNote(soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, soundAreaSelector.activeAudioClip, pitchRangeSelector.activePitch, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
         
         audioPlayer.PlayLoopNote(note);
         

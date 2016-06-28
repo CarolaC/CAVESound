@@ -11,6 +11,7 @@ public class SoundAreaPanelsManager : MonoBehaviour {
     public List<GameObject> soundAreaPanels = new List<GameObject>();
 
     private DragInstrument dragger;
+	private SliderManager sliderManager;
 
    
 	// Start is called just before any of the
@@ -19,6 +20,7 @@ public class SoundAreaPanelsManager : MonoBehaviour {
         // trigger the creation of sound area panels on startup
         NumOfSoundAreasChanged(numSoundAreasDropDown.value);
 
+		sliderManager = GameObject.Find ("InstrumentsSlider").GetComponent<SliderManager> ();
         GameObject soundAreaDragPanel = GameObject.Find("SoundAreaDragPanel");
         dragger = soundAreaDragPanel.GetComponent<DragInstrument>();
 	}
@@ -47,9 +49,14 @@ public class SoundAreaPanelsManager : MonoBehaviour {
     {
         PlayerPrefs.SetInt("NumSoundAreas", soundAreaPanels.Count);
 
-        for (int i = 0; i < soundAreaPanels.Count; i++)
-        {
-            PlayerPrefs.SetInt("Instrument" + i, soundAreaPanels[i].GetComponent<Instrument>().midiInstrument);
-        }
+		if (sliderManager.playMidi) {
+			for (int i = 0; i < soundAreaPanels.Count; i++) {
+				PlayerPrefs.SetInt ("Instrument" + i, soundAreaPanels [i].GetComponent<Instrument> ().midiInstrument);
+			}
+		} else {	
+			for (int i = 0; i < soundAreaPanels.Count; i++) {
+				PlayerPrefs.SetInt ("Instrument" + i, soundAreaPanels [i].GetComponent<Instrument> ().audioFileNumber);
+			}
+		}
     }
 }

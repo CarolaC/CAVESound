@@ -72,7 +72,7 @@ public class BeatVisualizer : MonoBehaviour {
         }
 	}
 
-    public Vector3 calculateBeatSoundPointPosition(int pitch, float time)
+    public Vector3 calculateBeatSoundPointPosition(float pitch, float time)
     {
 		return new Vector3((beatPanelWidth / loopDuration) * timer, beatPanelLayerHeight * pitch - (beatPanelHeight * 0.5f) + (beatPanelLayerHeight * 0.5f), 0);
     }

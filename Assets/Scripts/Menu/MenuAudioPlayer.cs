@@ -4,7 +4,7 @@ using CSharpSynth.Synthesis;
 using CSharpSynth.Midi;
 
 public class MenuAudioPlayer : MonoBehaviour {
-
+	
     private StreamSynthesizer midiStreamSynthesizer;
     private string bankFilePath = "GM Bank/gm";
     private int bufferSize = 1024;
@@ -12,9 +12,15 @@ public class MenuAudioPlayer : MonoBehaviour {
     private int midiPitch = 60;
     private float[] sampleBuffer;
     private float gain = 1f;
+	private SliderManager sliderManager;
+	private AudioSource audioSource;
+	private bool playMidi;
     
 	// Use this for initialization
 	void Awake () {
+		sliderManager = GameObject.Find("InstrumentsSlider").GetComponent<SliderManager> ();
+		playMidi = sliderManager.playMidi;
+		audioSource = GetComponent<AudioSource> ();
         midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
         midiStreamSynthesizer.LoadBank(bankFilePath);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];	
@@ -22,7 +28,14 @@ public class MenuAudioPlayer : MonoBehaviour {
 	
     public void InstrumentChanged(float number)
     {
-        StartCoroutine(PlayInstrument (number));
+		if (playMidi)
+			StartCoroutine (PlayInstrument (number));
+		else {
+			if (sliderManager.finishedLoading) {
+				audioSource.clip = sliderManager.GetAudioFile (Mathf.RoundToInt (number));
+				audioSource.Play ();
+			}
+		}       
     }
 
     IEnumerator PlayInstrument(float number)
@@ -39,12 +52,13 @@ public class MenuAudioPlayer : MonoBehaviour {
     // If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.
     private void OnAudioFilterRead(float[] data, int channels)
     {
-        //This uses the Unity specific float method we added to get the buffer
-        midiStreamSynthesizer.GetNext(sampleBuffer);
+		if (playMidi) {
+			//This uses the Unity specific float method we added to get the buffer
+			midiStreamSynthesizer.GetNext (sampleBuffer);
 
-        for (int i = 0; i < data.Length; i++)
-        {
-            data[i] = sampleBuffer[i] * gain;
-        }
+			for (int i = 0; i < data.Length; i++) {
+				data [i] = sampleBuffer [i] * gain;
+			}
+		}
     }
 }

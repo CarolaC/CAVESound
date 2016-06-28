@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Menu\LightState.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuAudioPlayer.cs" />
      <Compile Include="Assets\Scripts\Menu\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\Menu\SliderManager.cs" />
      <Compile Include="Assets\Scripts\Menu\SoundAreaPanelsManager.cs" />
      <Compile Include="Assets\Scripts\PitchRangeSelector.cs" />
      <Compile Include="Assets\Scripts\SetNoteManager.cs" />

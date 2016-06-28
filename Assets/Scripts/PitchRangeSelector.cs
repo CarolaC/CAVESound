@@ -10,12 +10,12 @@ public class PitchRangeSelector : MonoBehaviour {
     public float armRangeTop;
 
 	[HideInInspector]
-    public int pitchCount = 8;
+    public int pitchCount = 3;
     private float pitchTotalLength;
 	private float pitchRangeLength;
     private List<float> pitchRanges = new List<float>();
     [HideInInspector]
-    public int activePitch;
+    public float activePitch;
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +37,7 @@ public class PitchRangeSelector : MonoBehaviour {
         {
 			if ((secondTargetTransform.position.y > pitchRanges[i]) && (secondTargetTransform.position.y < pitchRanges[i] + pitchRangeLength))
             {
-                activePitch = i;
+				activePitch = (i + 5) * 0.2f;
                 //print("Listener in Pitch Range " + i);
             }
         }

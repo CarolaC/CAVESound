@@ -22,8 +22,11 @@ public class AudioPlayer : MonoBehaviour {
     private SoundAreaSelector soundAreaSelector;
     private PitchRangeSelector pitchRangeSelector;
     private int activeSoundArea;
-    private int activePitch;
+    private float activePitch;
 	private AudioSource activeSoundAreaAudioSource;
+
+	[HideInInspector]
+	public AudioClip[] audioFiles;
 
 	// Awake is called when the script instance
 	// is being loaded.
@@ -32,6 +35,8 @@ public class AudioPlayer : MonoBehaviour {
         midiStreamSynthesizer = new StreamSynthesizer(44100, 2, bufferSize, 40);
         midiStreamSynthesizer.LoadBank(bankFilePath);
         sampleBuffer = new float[midiStreamSynthesizer.BufferSize];
+
+		audioFiles = Resources.LoadAll<AudioClip> ("Audio/Instruments");
 
         soundAreaSelector = GameObject.Find("SoundManagers").GetComponent<SoundAreaSelector>();
 		pitchRangeSelector = GameObject.Find("SoundManagers").GetComponent<PitchRangeSelector>();
@@ -57,7 +62,7 @@ public class AudioPlayer : MonoBehaviour {
 	private IEnumerator SelectionSoundMidiCoroutine()
     {
         // the active pitch can change during this coroutine, so save it first
-        int tempPitch = minPitch + activePitch;
+		int tempPitch = minPitch + Mathf.RoundToInt(activePitch);
         midiStreamSynthesizer.NoteOn(1, tempPitch, chooseNoteVolume, soundAreaSelector.activeInstrument);
         //print("Played note with instrument " + soundAreaSelector.activeInstrument + " and pitch " + activePitch);
         yield return new WaitForSeconds(0.5f);
@@ -77,15 +82,15 @@ public class AudioPlayer : MonoBehaviour {
 
 	IEnumerator MidiCoroutine(LoopNote note)
 	{
-		midiStreamSynthesizer.NoteOn(1, note.pitchNum, loopNoteVolume, note.instrumentNum);
+		midiStreamSynthesizer.NoteOn(1, Mathf.RoundToInt(note.pitchNum), loopNoteVolume, note.instrumentNum);
 		StartCoroutine(note.LightFlashCoroutine());
 		yield return new WaitForSeconds(1);
-		midiStreamSynthesizer.NoteOff(1, note.pitchNum);
+		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitchNum));
 	}
 
 	public void Stop(LoopNote note)
 	{
-		midiStreamSynthesizer.NoteOff(1, note.pitchNum);
+		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitchNum));
 	}
     
     // this function plays the audio data (code from UnitySynthTest.cs)
