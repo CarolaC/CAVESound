@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CaveSoundMenu.unity
+- path: Assets/Scenes/CaveSoundMain.unity
   isLoaded: 1
   isActive: 1

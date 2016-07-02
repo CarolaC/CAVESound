@@ -1,18 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\SliderManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LoopManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\LoopNote.cs" Line="36" Column="71" />
-      <File FileName="Assets\Scripts\LoopManager.cs" Line="27" Column="16" />
-      <File FileName="Assets\Scripts\AudioPlayer.cs" Line="59" Column="10" />
-      <File FileName="Assets\Scripts\SoundAreaSelector.cs" Line="74" Column="5" />
-      <File FileName="Assets\Scripts\PitchRangeSelector.cs" Line="40" Column="24" />
-      <File FileName="Assets\Scripts\BeatVisualizer.cs" Line="77" Column="86" />
-      <File FileName="Assets\Scripts\Menu\SceneLoader.cs" Line="29" Column="26" />
+      <File FileName="Assets\Scripts\PitchRangeSelector.cs" Line="41" Column="25" />
+      <File FileName="Assets\Scripts\LoopNote.cs" Line="17" Column="2" />
+      <File FileName="Assets\Scripts\LoopManager.cs" Line="143" Column="3" />
+      <File FileName="Assets\Scripts\AudioPlayer.cs" Line="93" Column="63" />
+      <File FileName="Assets\Scripts\SoundAreaSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BeatVisualizer.cs" Line="73" Column="3" />
+      <File FileName="Assets\Scripts\Menu\SceneLoader.cs" Line="3" Column="35" />
       <File FileName="Assets\Scripts\Menu\SoundAreaPanelsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Menu\Instrument.cs" Line="31" Column="8" />
+      <File FileName="Assets\Scripts\Menu\Instrument.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Menu\MenuAudioPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Menu\SliderManager.cs" Line="51" Column="7" />
+      <File FileName="Assets\Scripts\Menu\SliderManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

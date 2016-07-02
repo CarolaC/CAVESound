@@ -5,30 +5,30 @@ using System.Collections;
 public class LoopNote {
 
     public int soundArea;
-	public float pitchRange;
-    public int instrumentNum;
+	public int instrumentNum;
+	public float pitch;
+	public int pitchRange;
     public Color color;
-    public float pitchNum;
     public float time;    // in milliseconds
     public Vector3 direction;
     public GameObject soundLight;
     public GameObject beatSoundPoint;
     public BeatVisualizer beatVisualizer;
 
-	public LoopNote(Color color, int soundArea, int instrumentNum, AudioClip audioClip, float pitchRange, float pitchNum, 
+	public LoopNote(AudioClip audioClip, Color color, int soundArea, int instrumentNum, int pitchRange, float pitch, 
 		float time, Vector3 direction)
 	{
 		this.color = color;
 		this.soundArea = soundArea;
-		this.pitchRange = pitchRange;
 		this.instrumentNum = instrumentNum;
-        this.pitchNum = pitchNum;
+		this.pitchRange = pitchRange;
+		this.pitch = pitch;
         this.time = time;
         this.direction = direction;
 
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
 		soundLight.GetComponent<AudioSource> ().clip = audioClip;
-		soundLight.GetComponent<AudioSource> ().pitch = pitchRange;
+		soundLight.GetComponent<AudioSource> ().pitch = pitch;
 
         beatVisualizer = GameObject.Find("BeatPanel").GetComponent<BeatVisualizer>();
         beatSoundPoint = (GameObject)GameObject.Instantiate(beatVisualizer.beatPointPrefab);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ public class LoopManager : MonoBehaviour {
     private float timer;
     private int noteIndex;
     private LoopNote currentNote;
-    private bool lastNote = false;
-    private int minPitch = 60;
+	private bool lastNote = false;
+	private int minMidiPitch = 60;
     
 	// Use this for initialization
 	void Start () {
@@ -45,7 +46,7 @@ public class LoopManager : MonoBehaviour {
 			float time = 0;
 
 			for (int i = 0; i < numberOfBeats; i++) {
-				loopNotes.Add (new LoopNote (soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, beatInstrument, pitchRangeSelector.activePitch, 60, time, new Vector3 (-10.5f, 2.0f, 0)));
+				loopNotes.Add (new LoopNote (beatInstrument, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, pitchRangeSelector.activePitch, 60, time, new Vector3 (-10.5f, 2.0f, 0)));
 				time += loopDuration / numberOfBeats;
 			}
 		}*/
@@ -111,7 +112,7 @@ public class LoopManager : MonoBehaviour {
     // this method is registered as listener
 	void SetOnLoop() 
     {
-		LoopNote note = new LoopNote(soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, soundAreaSelector.activeAudioClip, pitchRangeSelector.activePitch, minPitch + pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
+		LoopNote note = new LoopNote(soundAreaSelector.activeAudioClip, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, pitchRangeSelector.activePitchRange, pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
         
         audioPlayer.PlayLoopNote(note);
         
@@ -136,4 +137,10 @@ public class LoopManager : MonoBehaviour {
 
         noteIndex = 0;
     }
+
+	public void BackToMenuButtonClickHandler()
+	{
+		ResetButtonClickHandler (); // reset everything first
+		SceneManager.LoadScene ("CaveSoundMenu");
+	}
 }

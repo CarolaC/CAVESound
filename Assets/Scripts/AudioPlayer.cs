@@ -82,15 +82,15 @@ public class AudioPlayer : MonoBehaviour {
 
 	IEnumerator MidiCoroutine(LoopNote note)
 	{
-		midiStreamSynthesizer.NoteOn(1, Mathf.RoundToInt(note.pitchNum), loopNoteVolume, note.instrumentNum);
+		midiStreamSynthesizer.NoteOn(1, Mathf.RoundToInt(note.pitch), loopNoteVolume, note.instrumentNum);
 		StartCoroutine(note.LightFlashCoroutine());
 		yield return new WaitForSeconds(1);
-		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitchNum));
+		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitch));
 	}
 
 	public void Stop(LoopNote note)
 	{
-		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitchNum));
+		midiStreamSynthesizer.NoteOff(1, Mathf.RoundToInt(note.pitch));
 	}
     
     // this function plays the audio data (code from UnitySynthTest.cs)
