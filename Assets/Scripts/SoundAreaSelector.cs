@@ -17,12 +17,15 @@ public class SoundAreaSelector : MonoBehaviour {
     private List<GameObject> soundAreaPanels = new List<GameObject>();
 	
     private List<int> instruments = new List<int>();
+	private List<string> instrumentNames = new List<string>();
     private List<Color> colors = new List<Color>();
 
     [HideInInspector]
     public int activeSoundArea;
     [HideInInspector]
-    public int activeInstrument;
+	public int activeInstrument;
+	[HideInInspector]
+	public string activeInstrumentName;
 	[HideInInspector]
 	public AudioClip activeAudioClip;
     [HideInInspector]
@@ -60,6 +63,7 @@ public class SoundAreaSelector : MonoBehaviour {
         for (int i = 0; i < soundAreaCount; i++)
         {
             instruments.Add(PlayerPrefs.GetInt("Instrument" + i));
+			instrumentNames.Add (PlayerPrefs.GetString ("InstrumentName" + i));
         }
 
 		// divide the cave rect into sound areas
@@ -87,6 +91,7 @@ public class SoundAreaSelector : MonoBehaviour {
                     soundAreaPanels[activeSoundArea].GetComponent<Image>().color = new Color(1, 1, 1);
                     activeSoundArea = i;
                     activeInstrument = instruments[activeSoundArea];
+					activeInstrumentName = instrumentNames [activeSoundArea];
 
 					if (!audioPlayer.playMidi)
 						activeAudioClip = soundAreaFloors [activeSoundArea].GetComponent<AudioSource> ().clip;
@@ -98,7 +103,7 @@ public class SoundAreaSelector : MonoBehaviour {
                     soundAreaPanels[activeSoundArea].GetComponent<Image>().color = activeColor;
                     print("Listener in Area " + activeSoundArea);
                     StartCoroutine(testLightCoroutine());
-                    instrumentText.text = "" + activeInstrument;
+					instrumentText.text = "" + activeInstrumentName;
                 }
             }
         }

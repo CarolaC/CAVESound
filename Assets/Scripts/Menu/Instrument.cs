@@ -33,4 +33,9 @@ public class Instrument : MonoBehaviour {
 		}
     }
 
+	public string GetInstrumentName ()
+	{
+		return sliderManager.GetInstrumentName (audioFileNumber);
+	}
+
 }

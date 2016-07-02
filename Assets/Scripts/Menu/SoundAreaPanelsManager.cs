@@ -56,6 +56,7 @@ public class SoundAreaPanelsManager : MonoBehaviour {
 		} else {	
 			for (int i = 0; i < soundAreaPanels.Count; i++) {
 				PlayerPrefs.SetInt ("Instrument" + i, soundAreaPanels [i].GetComponent<Instrument> ().audioFileNumber);
+				PlayerPrefs.SetString ("InstrumentName" + i, soundAreaPanels [i].GetComponent<Instrument> ().GetInstrumentName ());
 			}
 		}
     }
