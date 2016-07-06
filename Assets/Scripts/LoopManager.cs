@@ -8,7 +8,7 @@ using System.Collections.Generic;
 // manages the loop cycle, creates new loop notes and adds them to the loop
 public class LoopManager : MonoBehaviour {
 
-	public float loopDuration;     // in milliseconds
+	public float loopDuration;     // in seconds
     public int numberOfBeats;
 
 	private SoundAreaSelector soundAreaSelector;
@@ -20,7 +20,7 @@ public class LoopManager : MonoBehaviour {
     private List<LoopNote> loopNotes = new List<LoopNote>();
     private List<LoopNote> pendingNotes = new List<LoopNote>();
     private List<GameObject> beatPoints = new List<GameObject>();
-    private int beatInstrument = 115;
+	private AudioClip[] beatInstruments;
     private float timer;
     private int noteIndex;
     private LoopNote currentNote;
@@ -40,16 +40,24 @@ public class LoopManager : MonoBehaviour {
 		simulator = GameObject.Find("SecondTarget").GetComponent<SimulateRotation>();
 		simulator.setOnLoopEvent.AddListener(SetOnLoop);
 
-		/*
-		if (!playMidi) {
-			// create beat
+		// create beat
+		beatInstruments = Resources.LoadAll<AudioClip> ("Audio/BeatInstruments");
+
+		if (beatInstruments.Length >= 2) {
+			AudioClip bassDrum = beatInstruments [0];
+			AudioClip hihat = beatInstruments [1];
+
 			float time = 0;
 
 			for (int i = 0; i < numberOfBeats; i++) {
-				loopNotes.Add (new LoopNote (beatInstrument, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, pitchRangeSelector.activePitch, 60, time, new Vector3 (-10.5f, 2.0f, 0)));
+				loopNotes.Add (new LoopNote (bassDrum, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, 0, 1, time, new Vector3 (0, 0, 0), true));
 				time += loopDuration / numberOfBeats;
 			}
-		}*/
+
+			time -= (loopDuration / numberOfBeats) * 0.5f;
+			print ("Hihat Time: " + time);
+			loopNotes.Add (new LoopNote (hihat, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, 0, 1, time, new Vector3 (0, 0, 0), true));
+		}
 
         // sort notes by time
         loopNotes.Sort((x, y) => x.time.CompareTo(y.time));
@@ -112,7 +120,7 @@ public class LoopManager : MonoBehaviour {
     // this method is registered as listener
 	void SetOnLoop() 
     {
-		LoopNote note = new LoopNote(soundAreaSelector.activeAudioClip, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, pitchRangeSelector.activePitchRange, pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection);
+		LoopNote note = new LoopNote(soundAreaSelector.activeAudioClip, soundAreaSelector.activeColor, soundAreaSelector.activeSoundArea, soundAreaSelector.activeInstrument, pitchRangeSelector.activePitchRange, pitchRangeSelector.activePitch, timer, soundDirectionManager.soundDirection, false);
         
         audioPlayer.PlayLoopNote(note);
         

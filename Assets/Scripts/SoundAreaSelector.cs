@@ -144,8 +144,8 @@ public class SoundAreaSelector : MonoBehaviour {
 		GameObject soundAreaFloor;
 		for (int i = 0; i < soundAreas.Count; i++) {
 			print ("Sound Area " + i + ": " + soundAreas [i]);
-			soundAreaFloor = (GameObject)Instantiate (soundAreaFloorPrefab, new Vector3 (soundAreas[i].center.x, 0, soundAreas[i].center.y), Quaternion.identity);
-			soundAreaFloor.transform.localScale = new Vector3 (soundAreas [i].width, 0.02f, soundAreas[i].height);
+			soundAreaFloor = (GameObject)Instantiate (soundAreaFloorPrefab, new Vector3 (soundAreas[i].center.x, -0.2f, soundAreas[i].center.y), Quaternion.identity);
+			soundAreaFloor.transform.localScale = new Vector3 (soundAreas [i].width, 0.01f, soundAreas[i].height);
 			soundAreaFloors.Add (soundAreaFloor);
 		}
     }

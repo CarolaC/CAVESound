@@ -16,7 +16,7 @@ public class LoopNote {
     public BeatVisualizer beatVisualizer;
 
 	public LoopNote(AudioClip audioClip, Color color, int soundArea, int instrumentNum, int pitchRange, float pitch, 
-		float time, Vector3 direction)
+		float time, Vector3 direction, bool isBeatInstrument)
 	{
 		this.color = color;
 		this.soundArea = soundArea;
@@ -29,14 +29,17 @@ public class LoopNote {
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
 		soundLight.GetComponent<AudioSource> ().clip = audioClip;
 		soundLight.GetComponent<AudioSource> ().pitch = pitch;
+		soundLight.GetComponent<Light> ().color = color;
 
-        beatVisualizer = GameObject.Find("BeatPanel").GetComponent<BeatVisualizer>();
-        beatSoundPoint = (GameObject)GameObject.Instantiate(beatVisualizer.beatPointPrefab);
-        beatSoundPoint.transform.localPosition = beatVisualizer.calculateBeatSoundPointPosition(pitchRange, time);
-        beatSoundPoint.transform.localScale = new Vector3(1, 0.2f, 1);
-        beatSoundPoint.transform.SetParent(beatVisualizer.gameObject.transform, false);
-        soundLight.GetComponent<Light>().color = color;
-        beatSoundPoint.GetComponent<Image>().color = color;
+		beatVisualizer = GameObject.Find("BeatPanel").GetComponent<BeatVisualizer>();
+
+		if (!isBeatInstrument) {
+			beatSoundPoint = (GameObject)GameObject.Instantiate (beatVisualizer.beatPointPrefab);
+			beatSoundPoint.transform.localPosition = beatVisualizer.calculateBeatSoundPointPosition (pitchRange, time);
+			beatSoundPoint.transform.localScale = new Vector3 (1, 0.2f, 1);
+			beatSoundPoint.transform.SetParent (beatVisualizer.gameObject.transform, false);
+			beatSoundPoint.GetComponent<Image> ().color = color;
+		}
     }
 
 	// flashing light
