@@ -11,6 +11,7 @@ public class LoopNote {
     public Color color;
     public float time;    // in milliseconds
     public Vector3 direction;
+	public bool isBeatInstrument;
     public GameObject soundLight;
     public GameObject beatSoundPoint;
     public BeatVisualizer beatVisualizer;
@@ -25,6 +26,7 @@ public class LoopNote {
 		this.pitch = pitch;
         this.time = time;
         this.direction = direction;
+		this.isBeatInstrument = isBeatInstrument;
 
         soundLight = (GameObject)GameObject.Instantiate(GameObject.Find("SoundLight"), direction, Quaternion.identity);
 		soundLight.GetComponent<AudioSource> ().clip = audioClip;

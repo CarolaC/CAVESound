@@ -138,17 +138,29 @@ public class LoopManager : MonoBehaviour {
 
         foreach (LoopNote loopNote in loopNotes)
         {
-			loopNote.DeleteLight();
-			audioPlayer.Stop (loopNote);
+			if (!loopNote.isBeatInstrument) {
+				loopNote.DeleteLight ();
+				audioPlayer.Stop (loopNote);
+			}
         }
-        loopNotes.Clear();
+
+		// remove all notes except the beat instruments
+		loopNotes.RemoveAll (IsNotBeatInstrument);
 
         noteIndex = 0;
+
+		if (loopNotes.Count > 0)
+			currentNote = loopNotes [noteIndex];
     }
 
 	public void BackToMenuButtonClickHandler()
 	{
 		ResetButtonClickHandler (); // reset everything first
 		SceneManager.LoadScene ("CaveSoundMenu");
+	}
+
+	private static bool IsNotBeatInstrument(LoopNote note)
+	{
+		return !note.isBeatInstrument;
 	}
 }

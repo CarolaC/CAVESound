@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LoopManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\LoopManager.cs" Line="57" Column="50" />
+      <File FileName="Assets\Scripts\AudioPlayer.cs" Line="78" Column="1" />
+      <File FileName="Assets\Scripts\LoopManager.cs" Line="152" Column="27" />
       <File FileName="Assets\Scripts\PitchRangeSelector.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SoundAreaVisualizer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LoopNote.cs" Line="11" Column="24" />
-      <File FileName="Assets\Scripts\AudioPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LoopNote.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SoundAreaSelector.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BeatVisualizer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Menu\SceneLoader.cs" Line="1" Column="1" />
